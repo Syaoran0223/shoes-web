@@ -10,11 +10,12 @@ class User(SQLMixin, db.Model):
     """
     User 是一个保存用户数据的 model
     现在只有两个属性 username 和 password
+    level 有两个属性 'admin', 'edit'
     """
     username = Column(String(50), nullable=False)
     password = Column(String(100), nullable=False)
-    avatar = Column(String(100), nullable=False, default='/images/3.jpg')    
-
+    avatar = Column(String(100), nullable=False, default='/images/3.jpg')
+    token = Column(String(20), nullable=False, default='edit')
 
     def add_default_value(self):
         super().add_default_value()

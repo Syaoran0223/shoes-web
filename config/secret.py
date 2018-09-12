@@ -1,4 +1,4 @@
 secret_key = '$!@><?>HUI&DWQa`'
-database_password = '123456'
+database_password = '123'
 database = 'magic'
 
