@@ -1,5 +1,7 @@
 from flask import Flask
+# 跨域
 from flask_cors import CORS
+
 from models.base_model import db
 from config import secret
 from routes.index import main as index_routes
@@ -11,41 +13,23 @@ from routes.user import main as user_routes
 # from routes.message import main as mail_routes, mail
 
 def configured_app():
-    # web framework
-    # web application
-    # __main__
     app = Flask(__name__)
     CORS(app)
-# 设置 secret_key 来使用 flask 自带的 session
+    # 设置 secret_key 来使用 flask 自带的 session
     # 这个字符串随便你设置什么内容都可以
     app.secret_key = secret.secret_key
-
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:{}@localhost/{}?charset=utf8mb4'.format(
         secret.database_password,
         secret.database
     )
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
-    # mail.init_app(app)
     register_routes(app)
     return app
 
-
 def register_routes(app):
-    """
-    在 flask 中，模块化路由的功能由 蓝图（Blueprints）提供
-    蓝图可以拥有自己的静态资源路径、模板路径（现在还没涉及）
-    用法如下
-    """
-    # 注册蓝图
-    # 有一个 url_prefix 可以用来给蓝图中的每个路由加一个前缀
-
-    app.register_blueprint(index_routes)
     app.register_blueprint(user_routes, url_prefix='/user')
-    # app.register_blueprint(reply_routes, url_prefix='/reply')
-    # app.register_blueprint(board_routes, url_prefix='/board')
-    # app.register_blueprint(mail_routes, url_prefix='/mail')
-#
+
 # 运行代码
 if __name__ == '__main__':
     app = configured_app()

@@ -13,9 +13,9 @@ from flask import (
     abort,
     send_from_directory,
     jsonify,
-
 )
-from routes import cors
+
+from routes import cors, hasToken
 from models.user import User
 from models.res import Res
 main = Blueprint('user', __name__)
@@ -30,6 +30,8 @@ def register():
 
 @main.route("/login", methods=['POST'])
 def login():
+    print('request.header', request.headers)
+    # form = request.form
     form = request.json
     print('form', form)
     u = User.validate_login(form)
@@ -41,7 +43,7 @@ def login():
         token = dict(
             token = token
         )
-        r = Res.success(token, '今次 我便是要看看这登录可否成功！')
+        r = Res.success(token, '登录成功')
     else:
         r = Res.fail({}, '登录失败')
     resp = make_response(jsonify(r))
@@ -50,6 +52,18 @@ def login():
 
 
 @main.route('/info', methods=['GET'])
+@hasToken
 def queryUserInfo():
+    print('request.header', request.headers.get('X-Token'))
     print('cookie', request.cookies)
-    return
+    uid = session.get('user_id')
+    u = User.one(id=uid)
+    print('uid', u)
+    data = dict(
+        roles = [u.token],
+        name = u.username,
+        avatar = 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80',
+    )
+    r = Res.success(data)
+    resp = make_response(jsonify(r))
+    return resp

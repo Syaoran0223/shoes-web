@@ -17,4 +17,4 @@ main = Blueprint('index', __name__)
 @main.route("/")
 def index():
     # u = current_user()
-    return render_template("index.html")
+    return render_template("login.html")
