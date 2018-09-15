@@ -6,7 +6,7 @@ from models.base_model import db
 from config import secret
 from routes.index import main as index_routes
 from routes.user import main as user_routes
-
+from routes.image import main as image
 # from routes.topic import main as topic_routes
 # from routes.reply import main as reply_routes
 # from routes.board import main as board_routes
@@ -14,6 +14,8 @@ from routes.user import main as user_routes
 
 def configured_app():
     app = Flask(__name__)
+    # app = Flask(__name__, static_folder='templates/static', static_url_path='templates/static')
+    # app._static_folder = './template/static'
     CORS(app)
     # 设置 secret_key 来使用 flask 自带的 session
     # 这个字符串随便你设置什么内容都可以
@@ -28,7 +30,9 @@ def configured_app():
     return app
 
 def register_routes(app):
+    app.register_blueprint(index_routes)
     app.register_blueprint(user_routes, url_prefix='/user')
+    app.register_blueprint(image, url_prefix='/image')
 
 # 运行代码
 if __name__ == '__main__':

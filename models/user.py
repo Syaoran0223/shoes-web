@@ -3,7 +3,17 @@ import hashlib
 from sqlalchemy import Column, String, Text
 from config.secret import secret_key
 from models.base_model import SQLMixin, db
-
+from flask import (
+    render_template,
+    request,
+    redirect,
+    session,
+    url_for,
+    Blueprint,
+    make_response,
+    abort,
+    send_from_directory
+)
 
 class User(SQLMixin, db.Model):
     __tablename__ = 'User'
@@ -45,3 +55,8 @@ class User(SQLMixin, db.Model):
         )
         print('validate_login', form, query)        
         return User.one(**query)
+
+    @classmethod
+    def querUserFromSession(cls):
+        uid = session.get('user_id')
+        return cls.one(id=uid)

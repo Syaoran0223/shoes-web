@@ -62,8 +62,9 @@ def queryUserInfo():
     data = dict(
         roles = [u.token],
         name = u.username,
-        avatar = 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80',
+        avatar = 'http://thirdwx.qlogo.cn/mmopen/hgXWbMaaqmAj8fAKJJq1nozVgMrm7CfOd7w1W7UleKwFJT2dQbE7W9qRWr04Zra7W1PRQ5fibRZgqr7myOiadx6Q/132',
     )
     r = Res.success(data)
     resp = make_response(jsonify(r))
     return resp
+

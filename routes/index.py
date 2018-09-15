@@ -14,7 +14,7 @@ from flask import (
 )
 main = Blueprint('index', __name__)
 
-@main.route("/")
+@main.route("/", methods=['GET'])
 def index():
     # u = current_user()
-    return render_template("login.html")
+    return render_template("index.html")

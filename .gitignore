@@ -4,3 +4,6 @@ gua.log.txt
 secret.py
 database_secret.conf
 /templates
+/static
+.DS_store
+
