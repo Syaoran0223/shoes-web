@@ -18,3 +18,11 @@ main = Blueprint('index', __name__)
 def index():
     # u = current_user()
     return render_template("index.html")
+
+@main.route('/static')
+def static():
+    """
+    静态资源的处理函数, 读取图片并生成响应返回
+    """
+    filename = request.args['file']
+    return send_from_directory('static', filename)

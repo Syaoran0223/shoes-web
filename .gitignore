@@ -7,3 +7,5 @@ database_secret.conf
 /static
 .DS_store
 
+
+/static/
