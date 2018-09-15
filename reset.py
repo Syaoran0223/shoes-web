@@ -3,6 +3,7 @@ from sqlalchemy import create_engine
 from config.secret import database_password, database
 from app import configured_app
 from models.base_model import db
+from models.image import Img
 # from models.board import Board
 # from models.reply import Reply
 # from models.topic import Topic
