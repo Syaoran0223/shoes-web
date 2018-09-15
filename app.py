@@ -6,7 +6,7 @@ from models.base_model import db
 from config import secret
 from routes.index import main as index_routes
 from routes.user import main as user_routes
-
+from routes.image import main as image
 # from routes.topic import main as topic_routes
 # from routes.reply import main as reply_routes
 # from routes.board import main as board_routes
@@ -29,6 +29,7 @@ def configured_app():
 
 def register_routes(app):
     app.register_blueprint(user_routes, url_prefix='/user')
+    app.register_blueprint(image, url_prefix='/image')
 
 # 运行代码
 if __name__ == '__main__':
