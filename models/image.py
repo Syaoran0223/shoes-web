@@ -1,5 +1,6 @@
 import hashlib
 import os
+import uuid
 
 from sqlalchemy import Column, String, Text
 from config.secret import secret_key
@@ -8,7 +9,7 @@ from PIL import Image
 from flask import (
     url_for
 )
-
+import socket
 
 class Img(SQLMixin, db.Model):
     __tablename__ = 'image'
@@ -17,26 +18,26 @@ class Img(SQLMixin, db.Model):
     width = Column(String(100), nullable=False)
     height = Column(String(20), nullable=False)
     hash = Column(String(100), nullable=True, default='')
+    # 1 代表 true 显示图片
+    show =Column(String(1), nullable=False, default=1)
 
     @classmethod
     def save_one(cls, img):
-        basedir = os.path.abspath(os.path.join(os.getcwd(), ""))
-        base_url = '\\static\\'
-        # path = basedir + "\\upload_image\\"
-        # path = basedir + "/upload_image/"
-        path = basedir+ base_url
-        # print('path', path)
-        file_path = path + img.filename
-        print('file_path', file_path)
+        suffix = img.filename.split('.')[-1]
+        filename = '{}.{}'.format(str(uuid.uuid4()), suffix)
+        path = os.path.join('static/images', filename)
+        print('file_path', path)
+        print('socket', socket)
         # 获取图片信息
-        img.save(file_path)
+        img.save(path)
         img_size = Image.open(img).size
         print('img_size', img_size)
         data = dict(
-            file_name=img.filename,
+            file_name= filename,
+            # origin_name=img.filename,
             width=img_size[0],
             height=img_size[1],
-            src= base_url + img.filename
+            src= path,
         )
         r = cls.new(data).json()
         print('Image save_one', r)

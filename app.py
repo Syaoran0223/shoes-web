@@ -13,7 +13,7 @@ from routes.image import main as image
 # from routes.message import main as mail_routes, mail
 
 def configured_app():
-    app = Flask(__name__)
+    app = Flask(__name__, static_folder='')
     # app = Flask(__name__, static_folder='templates/static', static_url_path='templates/static')
     # app._static_folder = './template/static'
     CORS(app)

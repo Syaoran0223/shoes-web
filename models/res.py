@@ -9,14 +9,14 @@ class Res(object):
         self.data = form
 
     @classmethod
-    def success(cls, form, msg='success'):
+    def success(cls, form={}, msg='success'):
         r = cls(form)
         r.msg = msg
         # print('拼接测试', res)
         return r.__dict__
     
     @classmethod
-    def fail(cls, form, msg='fail'):
+    def fail(cls, form={}, msg='fail'):
         r = cls(form)
         r.code = 1
         r.msg = msg
