@@ -1,4 +1,5 @@
 import os
+import time
 import uuid
 
 from utils import log
@@ -41,6 +42,10 @@ def uplpad():
 def findAll():
     data = Img.all()
     data_json = [d.json() for d in data]
+    for d in data_json:
+        format = '%Y-%m-%d %H:%M:%S'
+        temp_time=time.localtime(d['created_time'])
+        d['created_time'] = time.strftime(format, temp_time)
     r = Res.success(data_json)
     resp = make_response(jsonify(r))
     return resp
