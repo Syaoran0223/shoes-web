@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="02941f71-a7c2-4663-9ba8-2a2873b33c15" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/magic-serve.conf" beforeDir="false" afterPath="$PROJECT_DIR$/magic-serve.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -49,7 +49,7 @@
           <entry key="conf" value="25" />
           <entry key="dummy" value="7" />
           <entry key="html" value="11" />
-          <entry key="py" value="6057" />
+          <entry key="py" value="6072" />
           <entry key="sh" value="7" />
         </counts>
       </usages-collector>
@@ -57,7 +57,7 @@
         <counts>
           <entry key="HTML" value="11" />
           <entry key="PLAIN_TEXT" value="39" />
-          <entry key="Python" value="6057" />
+          <entry key="Python" value="6072" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts" />
@@ -68,7 +68,7 @@
     <splitter split-orientation="horizontal" split-proportion="0.37053022">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/routes/image.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="-466">
@@ -92,7 +92,7 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/config/secret.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="60">
@@ -117,11 +117,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="419">
-                  <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
+                <state relative-caret-position="344">
+                  <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
                   <folding>
                     <element signature="e#0#23#0" expanded="true" />
                   </folding>
@@ -157,7 +157,7 @@
             <entry file="file://$PROJECT_DIR$/routes/index.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="105">
-                  <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+                  <caret line="20" selection-start-line="20" selection-end-line="20" />
                 </state>
               </provider>
             </entry>
@@ -166,7 +166,7 @@
             <entry file="file://$PROJECT_DIR$/models/base_model.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="416">
-                  <caret line="50" column="16" lean-forward="true" selection-start-line="50" selection-start-column="16" selection-end-line="50" selection-end-column="16" />
+                  <caret line="50" column="16" selection-start-line="50" selection-start-column="16" selection-end-line="50" selection-end-column="16" />
                   <folding>
                     <element signature="e#0#9#0" expanded="true" />
                     <marker date="1537114147242" expanded="true" signature="987:1297" ph="..." />
@@ -188,12 +188,12 @@
             <entry file="file://$PROJECT_DIR$/wsgi.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state>
-                  <caret column="10" lean-forward="true" selection-start-column="10" selection-end-column="10" />
+                  <caret column="10" selection-start-column="10" selection-end-column="10" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/magic-serve.conf">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="75">
@@ -206,7 +206,7 @@
             <entry file="file://$PROJECT_DIR$/magic-serve.nginx">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="165">
-                  <caret line="11" column="41" lean-forward="true" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
+                  <caret line="11" column="41" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
                 </state>
               </provider>
             </entry>
@@ -250,7 +250,6 @@
         <option value="$PROJECT_DIR$/routes/user.py" />
         <option value="$PROJECT_DIR$/config/secret.py" />
         <option value="$PROJECT_DIR$/models/res.py" />
-        <option value="$PROJECT_DIR$/app.py" />
         <option value="$PROJECT_DIR$/routes/index.py" />
         <option value="$PROJECT_DIR$/models/image.py" />
         <option value="$PROJECT_DIR$/models/2d.py" />
@@ -260,6 +259,7 @@
         <option value="$PROJECT_DIR$/web19.nginx" />
         <option value="$PROJECT_DIR$/wsgi.py" />
         <option value="$PROJECT_DIR$/magic-serve.conf" />
+        <option value="$PROJECT_DIR$/app.py" />
       </list>
     </option>
   </component>
@@ -590,13 +590,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/res.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/reset.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -624,33 +617,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/image.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-466">
-          <caret line="20" column="21" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <marker date="1537114147240" expanded="true" signature="993:998" ph="..." />
-            <marker date="1537114147240" expanded="true" signature="1249:1600" ph="..." />
-            <marker date="1537114147240" expanded="true" signature="1654:1659" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
         </state>
       </provider>
     </entry>
@@ -674,7 +644,7 @@
     <entry file="file://$PROJECT_DIR$/models/base_model.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="416">
-          <caret line="50" column="16" lean-forward="true" selection-start-line="50" selection-start-column="16" selection-end-line="50" selection-end-column="16" />
+          <caret line="50" column="16" selection-start-line="50" selection-start-column="16" selection-end-line="50" selection-end-column="16" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
             <marker date="1537114147242" expanded="true" signature="987:1297" ph="..." />
@@ -695,7 +665,7 @@
     <entry file="file://$PROJECT_DIR$/magic-serve.nginx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
-          <caret line="11" column="41" lean-forward="true" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
+          <caret line="11" column="41" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -709,7 +679,27 @@
     <entry file="file://$PROJECT_DIR$/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="10" lean-forward="true" selection-start-column="10" selection-end-column="10" />
+          <caret column="10" selection-start-column="10" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/res.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/image.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-466">
+          <caret line="20" column="21" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+            <marker date="1537114147240" expanded="true" signature="993:998" ph="..." />
+            <marker date="1537114147240" expanded="true" signature="1249:1600" ph="..." />
+            <marker date="1537114147240" expanded="true" signature="1654:1659" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -717,6 +707,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

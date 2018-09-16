@@ -31,8 +31,8 @@ def configured_app():
 
 def register_routes(app):
     app.register_blueprint(index_routes)
-    app.register_blueprint(user_routes, url_prefix='/user')
-    app.register_blueprint(image, url_prefix='/image')
+    app.register_blueprint(user_routes, url_prefix='/api/user')
+    app.register_blueprint(image, url_prefix='/api/image')
 
 # 运行代码
 if __name__ == '__main__':
