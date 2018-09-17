@@ -17,13 +17,12 @@ from flask import (
     jsonify
 )
 from models.res import Res
-
 main = Blueprint('image', __name__)
 from PIL import Image
 from routes import cors, hasToken
 from models.user import User
 from models.res import Res
-from models.picture import Picture
+from models.picture import Picture as Img
 main = Blueprint('image', __name__)
 
 
@@ -31,17 +30,17 @@ main = Blueprint('image', __name__)
 def uplpad():
     form = request.files['file']
     # 储存图片获取数据
-    data = Picture.save_one(form)
+    data = Img.save_one(form)
     if data is not None:
         r = Res.success(data)
     else:
-        r = Res.fail({})
+        r = Res.fail({}, msg='图片上传失败/有同样 hash的图片')
     return make_response(jsonify(r))
 
 @main.route('/delete', methods=['POST'])
 def delete():
     form = request.json
-    data = Picture.delete_one(id=form.get('id'))
+    data = Img.delete_one(id=form.get('id'))
     print('delete form', data is None)
     if data is None:
         r = Res.success()
@@ -51,7 +50,7 @@ def delete():
 
 @main.route('/all', methods=['GET'])
 def findAll():
-    data = Picture.all()
+    data = Img.all()
     data_json = [d.json() for d in data]
     for d in data_json:
         format = '%Y-%m-%d %H:%M:%S'
@@ -74,12 +73,9 @@ def delete_one():
 
 @main.route('/delete_more', methods=['POST'])
 def delete_more(**kwargs):
-    print('delete more kwargs', kwargs)
-    print('delete more **kwargs', **kwargs)
     form = request.json
     print('delete_more form', form)
     data = Img.delete_by_ids(ids=form['ids'])
-    print('delete_more len', len(data))
     if len(data) is 0:
         r = Res.success()
     else:
@@ -89,7 +85,7 @@ def delete_more(**kwargs):
 @main.route('/update', methods=['post'])
 def update():
     form = request.json
-    print('form', form)
+    print('updata form', form)
     data = Img.update(id=form['id'], show=str(form['show']))
     print('data', data)
     r = Res.success(data)
