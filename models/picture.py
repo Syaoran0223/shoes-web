@@ -27,31 +27,17 @@ class Picture(SQLMixin, db.Model):
     def save_one(cls, img):
         suffix = img.filename.split('.')[-1]
         filename = '{}.{}'.format(str(uuid.uuid4()), suffix)
+        print('文件名', filename)
         path = os.path.join('static/images', filename)
-        print('file_path', path)
+        print('储存路径', path)
         # 获取图片信息
-        img.save(path)
         img_size = Image.open(img).size
         # 图片转码 base64 ， 计算 hash 值，保存\
-        print('img.read len', img.read())
-        img_info = img.read()
-        img_info_len = len(img_info)
-        img_info_lenx = img_info_len - (img_info_len % 4 if img_info_len %4 else 4)
-        base64_img = base64.decodestring(img_info[:img_info_lenx])
-
-        # print('缺失长度', missing_padding)
-        # if missing_padding:
-        #     base64_img = base64_img + b'=' * missing_padding
-        print('base64_img', base64_img)
-        hash_img = hashlib.md5(base64_img).hexdigest()
-        print('hash img', hash_img[:50])
-        # 查找数据库中是否有同样的 hash 值 图片
-        is_same_hash = cls.one(hash=hash_img)
-        print('hash值图片查重结果', is_same_hash is None)
+        is_same_hash, hash_img = cls.img_to_hash(img)
         if is_same_hash is None:
             print('查询结果是 None')
             data = dict(
-                file_name=filename,
+                file_name= filename,
                 # origin_name=img.filename,
                 width=img_size[0],
                 height=img_size[1],
@@ -59,8 +45,23 @@ class Picture(SQLMixin, db.Model):
                 hash=hash_img
             )
             r = cls.new(data).json()
-            # print('Image save_one', r)
+            # img.save(path)
+            img.save(path)
+        # print('Image save_one', r)
         else:
-            print('save one hash is None')
+            print('{} 已存在'.format(img.filename))
             r = None
         return r
+    @classmethod
+    def img_to_hash(cls,img):
+        img_info = img.read()
+        img_info_len = len(img_info)
+        base64_img = base64.encodebytes(img_info)
+        # print('{} base64_img'.format(img.filename), base64_img)
+        hash_img = hashlib.md5(base64_img).hexdigest()
+        # print('{} hash img'.format(img.filename), hash_img[:50])
+        # 查找数据库中是否有同样的 hash 值 图片
+        is_same_hash = cls.one(hash=hash_img)
+        print('{} hash值图片查重结果'.format(img.filename), is_same_hash is not None)
+        return is_same_hash, hash_img
+

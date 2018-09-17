@@ -34,7 +34,7 @@ def uplpad():
     if data is not None:
         r = Res.success(data)
     else:
-        r = Res.fail({}, msg='图片上传失败/有同样 hash的图片')
+        r = Res.fail({}, msg='图片已存在')
     return make_response(jsonify(r))
 
 @main.route('/delete', methods=['POST'])
@@ -72,7 +72,7 @@ def delete_one():
     return make_response(jsonify(r))
 
 @main.route('/delete_more', methods=['POST'])
-def delete_more(**kwargs):
+def delete_more():
     form = request.json
     print('delete_more form', form)
     data = Img.delete_by_ids(ids=form['ids'])
