@@ -10,7 +10,7 @@ from flask import (
 )
 
 
-class Img(SQLMixin, db.Model):
+class Picture(SQLMixin, db.Model):
     __tablename__ = 'image'
     file_name = Column(String(50), nullable=False)
     src = Column(String(100), nullable=False)

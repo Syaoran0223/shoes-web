@@ -3,9 +3,7 @@ import time
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, String
-
 db = SQLAlchemy()
-
 
 class SQLMixin(object):
     id = Column(Integer, primary_key=True, nullable=False, autoincrement=True)
@@ -17,17 +15,12 @@ class SQLMixin(object):
         m = cls()
         for name, value in form.items():
             setattr(m, name, value)
-
         db.session.add(m)
         db.session.commit()
-
         return m
 
     @classmethod
     def update(cls, id, **kwargs):
-        # u.username = 'test'
-        # db.session.add(u)
-        # db.session.commit()
         m = cls.query.filter_by(id=id).first()
         for name, value in kwargs.items():
             setattr(m, name, value)
@@ -40,6 +33,17 @@ class SQLMixin(object):
         ms = cls.query.filter_by(**kwargs).all()
         return ms
 
+    @classmethod
+    def delete_one(cls, **kwargs):
+        ms = cls.one(**kwargs)
+        print('delete_one ms', ms)
+        db.session.delete(ms)
+        db.session.commit()
+        msRes = cls.one(**kwargs)
+        from models.user import User
+        user = User.one(id=1)
+        print('user', user)
+        return msRes
 
     @classmethod
     def one(cls, **kwargs):
@@ -82,15 +86,13 @@ class SQLMixin(object):
     #     dict.pop('_sa_instance_state')
     #     return dict
 
+
 class SimpleUser(SQLMixin, db.Model):
     username = Column(String(50), nullable=False)
     password = Column(String(50), nullable=False)
 
 
-
-
 if __name__ == '__main__':
-
     db.create_all()
     form = dict(
         username='feng',
@@ -100,4 +102,3 @@ if __name__ == '__main__':
     print(u)
     u = SimpleUser.one(username='123')
     print(u)
-
