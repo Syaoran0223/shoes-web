@@ -14,7 +14,7 @@ server {
 }
 server {
 	listen 80;
-	server_name git.syaoran.cc;
+	server_name http://git.syaoran.cc;
 	location / {
 		proxy_pass http//localhost:3000;
 	}
