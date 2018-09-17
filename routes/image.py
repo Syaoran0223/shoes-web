@@ -62,9 +62,7 @@ def delete_one():
     return make_response(jsonify(r))
 
 @main.route('/delete_more', methods=['POST'])
-def delete_more(**kwargs):
-    print('delete more kwargs', kwargs)
-    print('delete more **kwargs', **kwargs)
+def delete_more():
     form = request.json
     print('delete_more form', form)
     data = Img.delete_by_ids(ids=form['ids'])
