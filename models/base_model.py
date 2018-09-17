@@ -1,3 +1,4 @@
+import os
 import time
 
 from flask import Flask
@@ -20,30 +21,49 @@ class SQLMixin(object):
         return m
 
     @classmethod
+    def delete_one(cls, **kwargs):
+        m = cls.one(**kwargs)
+        db.session.delete(m)
+        db.session.commit()
+        delete_path = m.src
+        if (os.path.exists(delete_path)):
+            os.remove(delete_path)
+        else:
+            print('delete_one', '文件不存在')
+        m = cls.one(**kwargs)
+        return m
+
+    @classmethod
+    def delete_by_ids(cls, ids):
+        ms = cls.query.filter(cls.id.in_(tuple(ids))).all()
+        for m in ms:
+            m = cls.one(id=m.id)
+            db.session.delete(m)
+            os.remove(m.src)
+        db.session.commit()
+        delete_result = cls.query.filter(cls.id.in_(tuple(ids))).all()
+        return delete_result
+
+    @classmethod
     def update(cls, id, **kwargs):
+        print('update, id', id, )
+        print('**kwargs', kwargs)
+        # u.username = 'test'
+        # db.session.add(u)
+        # db.session.commit()
         m = cls.query.filter_by(id=id).first()
         for name, value in kwargs.items():
             setattr(m, name, value)
 
         db.session.add(m)
         db.session.commit()
+        r = cls.one(id=id).json()
+        return r
 
     @classmethod
     def all(cls, **kwargs):
         ms = cls.query.filter_by(**kwargs).all()
         return ms
-
-    @classmethod
-    def delete_one(cls, **kwargs):
-        ms = cls.one(**kwargs)
-        print('delete_one ms', ms)
-        db.session.delete(ms)
-        db.session.commit()
-        msRes = cls.one(**kwargs)
-        from models.user import User
-        user = User.one(id=1)
-        print('user', user)
-        return msRes
 
     @classmethod
     def one(cls, **kwargs):

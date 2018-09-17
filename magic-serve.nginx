@@ -1,0 +1,27 @@
+server {
+    listen 80;
+    location /images {
+        alias /var/www/magic-serve/images;
+    }
+
+    location /static {
+        alias /var/www/magic-serve/static;
+    }
+
+    location / {
+        proxy_pass http://localhost:2000;
+    }
+}
+server {
+
+listen 80;
+
+server_name git.syaoran.cc;
+
+location / { proxy_set_header X-Real-IP $remote_addr;
+
+proxy_set_header Host $http_host;
+
+proxy_pass http//localhost:3000; }
+
+}

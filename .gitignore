@@ -6,6 +6,5 @@ database_secret.conf
 /templates
 /static
 .DS_store
-
-
 /static/
+*.xml

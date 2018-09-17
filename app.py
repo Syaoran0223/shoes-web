@@ -13,7 +13,7 @@ from routes.image import main as image
 # from routes.message import main as mail_routes, mail
 
 def configured_app():
-    app = Flask(__name__)
+    app = Flask(__name__, static_folder='')
     # app = Flask(__name__, static_folder='templates/static', static_url_path='templates/static')
     # app._static_folder = './template/static'
     CORS(app)
@@ -31,8 +31,8 @@ def configured_app():
 
 def register_routes(app):
     app.register_blueprint(index_routes)
-    app.register_blueprint(user_routes, url_prefix='/user')
-    app.register_blueprint(image, url_prefix='/image')
+    app.register_blueprint(user_routes, url_prefix='/api/user')
+    app.register_blueprint(image, url_prefix='/api/image')
 
 # 运行代码
 if __name__ == '__main__':
