@@ -17,15 +17,12 @@ from flask import (
     jsonify
 )
 from models.res import Res
-
-main = Blueprint('image', __name__)
 from PIL import Image
 from routes import cors, hasToken
 from models.user import User
 from models.res import Res
-from models.image import Img as Img
+from models.picture import Picture as Img
 main = Blueprint('image', __name__)
-
 
 @main.route('/upload', methods=['POST'])
 def uplpad():
@@ -35,7 +32,18 @@ def uplpad():
     if data is not None:
         r = Res.success(data)
     else:
-        r = Res.fail({})
+        r = Res.fail({}, msg='图片已存在')
+    return make_response(jsonify(r))
+
+@main.route('/delete', methods=['POST'])
+def delete():
+    form = request.json
+    data = Img.delete_one(id=form.get('id'))
+    print('delete form', data is None)
+    if data is None:
+        r = Res.success()
+    else:
+        r = Res.fail(msg='图片删除失败')
     return make_response(jsonify(r))
 
 @main.route('/all', methods=['GET'])

@@ -72,6 +72,7 @@ class SQLMixin(object):
     @classmethod
     def one(cls, **kwargs):
         ms = cls.query.filter_by(**kwargs).first()
+        print('one cls', cls, ms)
         return ms
 
     @classmethod

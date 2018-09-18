@@ -35,9 +35,13 @@ def login():
     form = request.json
     print('form', form)
     u = User.validate_login(form)
-    token = u.json().get('token')
+    print('login, u', u)
     if u is not None:
+        token = u.json().get('token')
+        print('token', token)
         session['user_id'] = u.id
+        print('session', session)
+        print('login session', session.get('user_id'))
         # 设置 cookie 有效期为 永久
         session.permanent = True
         token = dict(
@@ -53,12 +57,12 @@ def login():
 
 @main.route('/info', methods=['GET'])
 @hasToken
-def queryUserInfo():
-    print('request.header', request.headers.get('X-Token'))
-    print('cookie', request.cookies)
+def queryUserInfo(*args, **kwargs):
+    print('session', session)
     uid = session.get('user_id')
+    print('queryUserInfo uid', uid)
     u = User.one(id=uid)
-    print('uid', u)
+    print('queryUserInfo u', u)
     data = dict(
         roles = [u.token],
         name = u.username,

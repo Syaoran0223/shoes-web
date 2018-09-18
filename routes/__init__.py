@@ -23,6 +23,7 @@ def hasToken(func):
         print('*args', args)
         print('**kwargs', kwargs)
         token = request.headers.get('X-Token')
+        print('hasToken', token)
         if token is not None:
             return func(*args, **kwargs)
         else:
