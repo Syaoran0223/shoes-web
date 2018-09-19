@@ -29,3 +29,18 @@ def hasToken(func):
         else:
             return abort(401)
     return wrapper
+
+def formatParams(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        print('判断方法', request.method)
+        if request.method == 'GET':
+            form = request.args.to_dict()
+        elif request.method == 'POST':
+            form = request.json
+        for f in form:
+            kwargs[f] = form.get(f)
+        # print('*args', args)
+        # print('**kwargs', kwargs)
+        return func(*args, **kwargs)
+    return wrapper

@@ -47,7 +47,7 @@ def login():
         token = dict(
             token = token
         )
-        r = Res.success(token, '登录成功')
+        r = Res.success(token,msg='登录成功')
     else:
         r = Res.fail({}, '登录失败')
     resp = make_response(jsonify(r))

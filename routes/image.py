@@ -18,7 +18,7 @@ from flask import (
 )
 from models.res import Res
 from PIL import Image
-from routes import cors, hasToken
+from routes import cors, hasToken, formatParams
 from models.user import User
 from models.res import Res
 from models.picture import Picture as Img
@@ -48,16 +48,23 @@ def delete():
 
 @main.route('/all', methods=['GET'])
 def findAll():
-    data = Img.all()
+    form = request.args.to_dict()
+    page_size = form.get('page_size') or None
+    page_index = form.get('page_index') or None
+    data, count= Img.all(page_size=page_size, page_index= page_index)
     data_json = [d.json() for d in data]
     for d in data_json:
         format = '%Y-%m-%d %H:%M:%S'
         temp_time=time.localtime(d['created_time'])
         d['created_time'] = time.strftime(format, temp_time)
-    r = Res.success(data_json)
+
+    d = dict(
+        list=data_json,
+        count=count
+    )
+    r = Res.success(d)
     resp = make_response(jsonify(r))
     return resp
-
 
 @main.route('/delete', methods=['POST'])
 def delete_one():
@@ -88,4 +95,17 @@ def update():
     data = Img.update(id=form['id'], show=str(form['show']))
     print('data', data)
     r = Res.success(data)
+    return make_response(jsonify(r))
+
+@main.route('/queryImageByName', methods=['GET'])
+def queryImageByName():
+    form = request.args.to_dict()
+    print('根据标题搜索数据', form)
+    data, count = Img.queryByCondition(**form)
+    d = dict(
+        list=data,
+        count=count
+    )
+    r = Res.success(d)
+    print('queryImageByName 结果', r)
     return make_response(jsonify(r))

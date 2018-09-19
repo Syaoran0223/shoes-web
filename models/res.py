@@ -9,8 +9,10 @@ class Res(object):
         self.data = form
 
     @classmethod
-    def success(cls, form={}, msg='success'):
+    def success(cls, form={},msg='success'):
+        print('success', form)
         r = cls(form)
+        print('r', r.__dict__)
         r.msg = msg
         # print('拼接测试', res)
         return r.__dict__
