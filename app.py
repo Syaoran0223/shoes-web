@@ -1,16 +1,14 @@
+# 基本配置
+from config.base import host, port
 from flask import Flask
 # 跨域
 from flask_cors import CORS
-
 from models.base_model import db
 from config import secret
 from routes.index import main as index_routes
 from routes.user import main as user_routes
 from routes.image import main as image
-# from routes.topic import main as topic_routes
-# from routes.reply import main as reply_routes
-# from routes.board import main as board_routes
-# from routes.message import main as mail_routes, mail
+from routes.teacher import main as teacher_routes
 
 def configured_app():
     app = Flask(__name__, static_folder='')
@@ -33,6 +31,7 @@ def register_routes(app):
     app.register_blueprint(index_routes)
     app.register_blueprint(user_routes, url_prefix='/api/user')
     app.register_blueprint(image, url_prefix='/api/image')
+    app.register_blueprint(teacher_routes, url_prefix='/api/teacher')
 
 # 运行代码
 if __name__ == '__main__':
@@ -46,8 +45,8 @@ if __name__ == '__main__':
     app.config['JSON_AS_ASCII'] = False
     config = dict(
         debug=True,
-        host='0.0.0.0',
-        port=2000,
+        host=host,
+        port=port,
         threaded=True,
     )
     app.run(**config)

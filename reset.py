@@ -3,6 +3,7 @@ from sqlalchemy import create_engine
 from config.secret import database_password, database
 from app import configured_app
 from models.base_model import db
+from models.teacher import Teacher
 from models.picture import Picture as Img
 # from models.board import Board
 # from models.reply import Reply
@@ -30,6 +31,15 @@ def generate_fake_date():
     )
     u = User.register(form)
     print('u', u.json())
+    teahcer1 = dict(
+        name='73',
+        avatar='/static/teacher/avatar-73.jpg',
+        job='曼奇立德高级讲师',
+        introduce='自身游戏原画师/CG艺术家',
+        type='01'
+    )
+    t = Teacher.new(teahcer1)
+    print('初始化默认教师', t)
 
 
 if __name__ == '__main__':

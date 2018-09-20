@@ -28,3 +28,13 @@ def image(filename):
     # print('images path', path)
     # return open(path, 'rb').read()
     return send_from_directory('static/images/', filename)
+
+@main.route('/static/teacher/<filename>', methods=['GET'])
+def image(filename):
+    # print('filename', filename)
+    # 不要直接拼接路由，不安全，比如
+    # http://localhost:2000/images/..%5Capp.py
+    # path = os.path.join('images', filename)
+    # print('images path', path)
+    # return open(path, 'rb').read()
+    return send_from_directory('static/teacher/', filename)

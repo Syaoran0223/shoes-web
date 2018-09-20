@@ -1,17 +1,18 @@
 import os
 import time
-
+import datetime
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Column, Integer, String, func
+from sqlalchemy import Column, Integer, String, func, DateTime
 
 db = SQLAlchemy()
 
 
 class SQLMixin(object):
     id = Column(Integer, primary_key=True, nullable=False, autoincrement=True)
-    created_time = Column(Integer, default=int(time.time()))
-    updated_time = Column(Integer, default=int(time.time()))
+    created_time = Column(DateTime, default=datetime.datetime.utcnow)
+    updated_time = Column(DateTime, default=datetime.datetime.utcnow)
+    # updated_time = Column(Integer, default=int(time.time()))
 
     @classmethod
     def new(cls, form):
