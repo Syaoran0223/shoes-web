@@ -36,19 +36,20 @@ def findAll():
         list=data_json,
         count=count
     )
+    print('findAll 数据类型',d)
     r = Res.success(d)
     resp = make_response(jsonify(r))
     return resp
 
-@main.route('/upload', methods=['POST'])
+@main.route('/add', methods=['POST'])
 def uplpad():
-    form = request.files['file']
+    form = request.json
     # 储存图片获取数据
-    data = Teacher.save_one(form)
+    data = Teacher.new(form)
     if data is not None:
         r = Res.success(data)
     else:
-        r = Res.fail({}, msg='图片已存在')
+        r = Res.fail({}, msg='教师新增失败')
     return make_response(jsonify(r))
 
 @main.route('/delete', methods=['POST'])
@@ -90,7 +91,9 @@ def delete_more():
 def update():
     form = request.json
     print('form', form)
-    data = Teacher.update(id=form['id'], show=str(form['show']))
+    print('update id', form['id'])
+    id = form['id']
+    data = Teacher.update(id=id, kwargs=form)
     print('data', data)
     r = Res.success(data)
     return make_response(jsonify(r))

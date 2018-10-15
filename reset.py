@@ -11,7 +11,8 @@ from models.picture import Picture as Img
 from models.user import User
 
 def reset_database():
-    url = 'mysql+pymysql://root:{}@localhost/?charset=utf8mb4'.format(
+    url = 'mysql+pymysql://root:{}@localhost:8806/?charset=utf8mb4'.format(
+    # url='mysql+pymysql://root:{}@mysql/?charset=utf8mb4'.format(
         database_password)
     e = create_engine(url, echo=True)
 

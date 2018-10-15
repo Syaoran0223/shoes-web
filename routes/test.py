@@ -10,7 +10,6 @@ print('g', g)
 #
 #
 # test(**c, **d)
-
 a = None
 b = None
 if (a and b)is True:

@@ -25,8 +25,9 @@ main = Blueprint('user', __name__)
 def register():
     form = request.form.to_dict()
     u = User.register(form)
-    print('注册', u)    
+    print('注册', u)
     return jsonify(u)
+
 
 @main.route("/login", methods=['POST'])
 def login():
@@ -45,9 +46,9 @@ def login():
         # 设置 cookie 有效期为 永久
         session.permanent = True
         token = dict(
-            token = token
+            token=token
         )
-        r = Res.success(token,msg='登录成功')
+        r = Res.success(token, msg='登录成功')
     else:
         r = Res.fail({}, '登录失败')
     resp = make_response(jsonify(r))
@@ -64,11 +65,10 @@ def queryUserInfo(*args, **kwargs):
     u = User.one(id=uid)
     print('queryUserInfo u', u)
     data = dict(
-        roles = [u.token],
-        name = u.username,
-        avatar = 'http://thirdwx.qlogo.cn/mmopen/hgXWbMaaqmAj8fAKJJq1nozVgMrm7CfOd7w1W7UleKwFJT2dQbE7W9qRWr04Zra7W1PRQ5fibRZgqr7myOiadx6Q/132',
+        roles=[u.token],
+        name=u.username,
+        avatar='http://thirdwx.qlogo.cn/mmopen/hgXWbMaaqmAj8fAKJJq1nozVgMrm7CfOd7w1W7UleKwFJT2dQbE7W9qRWr04Zra7W1PRQ5fibRZgqr7myOiadx6Q/132',
     )
     r = Res.success(data)
     resp = make_response(jsonify(r))
     return resp
-

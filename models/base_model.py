@@ -57,9 +57,10 @@ class SQLMixin(object):
         # db.session.add(u)
         # db.session.commit()
         m = cls.query.filter_by(id=id).first()
+        print('m', m)
         for name, value in kwargs.items():
+            print('base update name', name)
             setattr(m, name, value)
-
         db.session.add(m)
         db.session.commit()
         r = cls.one(id=id).json()
