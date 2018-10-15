@@ -60,7 +60,8 @@ def login():
 @hasToken
 def queryUserInfo(*args, **kwargs):
     print('session', session)
-    uid = session.get('user_id')
+    # uid = session.get('user_id')
+    uid = 1
     print('queryUserInfo uid', uid)
     u = User.one(id=uid)
     print('queryUserInfo u', u)
