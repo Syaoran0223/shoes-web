@@ -11,7 +11,7 @@ from models.picture import Picture as Img
 from models.user import User
 
 def reset_database():
-    url = 'mysql+pymysql://root:{}@localhost:8806/?charset=utf8mb4'.format(
+    url = 'mysql+pymysql://root:{}@localhost/?charset=utf8mb4'.format(
     # url='mysql+pymysql://root:{}@mysql/?charset=utf8mb4'.format(
         database_password)
     e = create_engine(url, echo=True)
@@ -34,7 +34,7 @@ def generate_fake_date():
     print('u', u.json())
     teahcer1 = dict(
         name='73',
-        avatar='/static/teacher/avatar-73.jpg',
+        avatar='/static/avatar-73.jpg',
         job='曼奇立德高级讲师',
         introduce='自身游戏原画师/CG艺术家',
         type='01'

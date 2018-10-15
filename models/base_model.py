@@ -22,17 +22,18 @@ class SQLMixin(object):
 
         db.session.add(m)
         db.session.commit()
-
         return m
-
     @classmethod
     def delete_one(cls, **kwargs):
+        print('base delete_one kwargs', kwargs)
         m = cls.one(**kwargs)
         db.session.delete(m)
         db.session.commit()
-        delete_path = m.src
-        if (os.path.exists(delete_path)):
-            os.remove(delete_path)
+        print('base delete_one m', m)
+        if hasattr(m, 'src') is True:
+            delete_path = m.src
+            if (os.path.exists(delete_path)):
+                os.remove(delete_path)
         else:
             print('delete_one', '文件不存在')
         m = cls.one(**kwargs)
@@ -50,17 +51,16 @@ class SQLMixin(object):
         return delete_result
 
     @classmethod
-    def update(cls, id, **kwargs):
+    def update(cls, id=None, **kwargs):
         print('update, id', id, )
         print('**kwargs', kwargs)
-        # u.username = 'test'
-        # db.session.add(u)
-        # db.session.commit()
+        id = id or kwargs.get('id')
         m = cls.query.filter_by(id=id).first()
         print('m', m)
         for name, value in kwargs.items():
-            print('base update name', name)
-            setattr(m, name, value)
+            if name != 'id':
+                print('base update name', name)
+                setattr(m, name, value)
         db.session.add(m)
         db.session.commit()
         r = cls.one(id=id).json()

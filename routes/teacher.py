@@ -31,7 +31,8 @@ def findAll():
     data_json = [d.json() for d in data]
     for i in range(0, len(data_json)):
         data_json[i]['created_time'] = data_json[i]['created_time'].strftime("%Y-%m-%d %H:%M:%S")
-        data_json[i]['avatar'] = base_url + data_json[i]['avatar']
+        if data_json[i]['avatar'] is not None and base_url not in data_json[i]:
+            data_json[i]['avatar'] = base_url + data_json[i]['avatar']
     d = dict(
         list=data_json,
         count=count
@@ -42,12 +43,16 @@ def findAll():
     return resp
 
 @main.route('/add', methods=['POST'])
-def uplpad():
+def add():
     form = request.json
+    print('add form', form)
     # 储存图片获取数据
     data = Teacher.new(form)
+    print('new add data', data )
     if data is not None:
-        r = Res.success(data)
+        print ('Res, data', data)
+        r = Res.success(data.json())
+        print('Res r', r)
     else:
         r = Res.fail({}, msg='教师新增失败')
     return make_response(jsonify(r))
@@ -67,7 +72,9 @@ def delete():
 
 @main.route('/delete', methods=['POST'])
 def delete_one():
+    print('delete_one', request.json)
     id = request.json.get('id')
+    print('delete one id', id)
     data = Teacher.delete_one(id=id)
     if data is None:
         r = Res.success()
@@ -91,9 +98,9 @@ def delete_more():
 def update():
     form = request.json
     print('form', form)
-    print('update id', form['id'])
     id = form['id']
-    data = Teacher.update(id=id, kwargs=form)
+    print('update id', id)
+    data = Teacher.update(**form)
     print('data', data)
     r = Res.success(data)
     return make_response(jsonify(r))
