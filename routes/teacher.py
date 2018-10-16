@@ -31,7 +31,8 @@ def findAll():
     data_json = [d.json() for d in data]
     for i in range(0, len(data_json)):
         data_json[i]['created_time'] = data_json[i]['created_time'].strftime("%Y-%m-%d %H:%M:%S")
-        if data_json[i]['avatar'] is not None and base_url not in data_json[i]:
+        print('base_url not in data_json avatar ', base_url not in data_json[i]['avatar'])
+        if data_json[i]['avatar'] is not None and base_url not in data_json[i]['avatar']:
             data_json[i]['avatar'] = base_url + data_json[i]['avatar']
     d = dict(
         list=data_json,

@@ -30,7 +30,7 @@ class Picture(SQLMixin, db.Model):
         filename = '{}.{}'.format(str(uuid.uuid4()), suffix)
         print('文件名', filename)
         path = os.path.join('static/images', filename)
-        print('储存路径', path)
+        # print('储存路径', eval(repr(path).replace('\\', '/')))
         img.save(path)
         # 获取图片信息
         img_size = Image.open(img).size
@@ -44,7 +44,7 @@ class Picture(SQLMixin, db.Model):
                 origin_name=img.filename,
                 width=img_size[0],
                 height=img_size[1],
-                src=path,
+                src=path.replace('\\', '/'),
                 hash=hash_img
             )
             r = cls.new(data).json()
@@ -54,7 +54,7 @@ class Picture(SQLMixin, db.Model):
         else:
             print('{} 已存在'.format(img.filename))
             os.remove(path)
-            r = None
+            r = is_same_hash.json()
         return r
     @classmethod
     def img_to_hash(cls,img):

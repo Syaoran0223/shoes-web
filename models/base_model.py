@@ -53,14 +53,16 @@ class SQLMixin(object):
     @classmethod
     def update(cls, id=None, **kwargs):
         print('update, id', id, )
-        print('**kwargs', kwargs)
+        print('base update **kwargs', kwargs)
         id = id or kwargs.get('id')
         m = cls.query.filter_by(id=id).first()
         print('m', m)
         for name, value in kwargs.items():
+
             if name != 'id':
-                print('base update name', name)
+                print('base update name', name, value)
                 setattr(m, name, value)
+        print('base update_end m', m)
         db.session.add(m)
         db.session.commit()
         r = cls.one(id=id).json()

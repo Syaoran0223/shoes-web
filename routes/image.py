@@ -21,14 +21,19 @@ from PIL import Image
 from routes import cors, hasToken, formatParams
 from models.user import User
 from models.res import Res
+from config.base import base_url
+
 from models.picture import Picture as Img
 main = Blueprint('image', __name__)
 
 @main.route('/upload', methods=['POST'])
-def uplpad():
+def upload():
     form = request.files['file']
     # 储存图片获取数据
     data = Img.save_one(form)
+    print('upload data', data)
+    if data['src'] is not None and base_url not in data['src']:
+        data['src'] = base_url + '/' + data['src']
     if data is not None:
         r = Res.success(data)
     else:
