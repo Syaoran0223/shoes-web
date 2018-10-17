@@ -106,7 +106,7 @@ def update():
     r = Res.success(data)
     return make_response(jsonify(r))
 
-@main.route('/queryImageByName', methods=['GET'])
+@main.route('/query_by_name', methods=['GET'])
 def queryImageByName():
     form = request.args.to_dict()
     print('根据标题搜索数据', form)

@@ -11,6 +11,8 @@ class Teacher(SQLMixin, db.Model):
     job = Column(String(50), comment='职位')
     introduce = Column(String(50),comment='介绍')
     type = Column(String(2), comment='01:2d班, 02:3d班, 03:基础班')
+    # 数据库中 0为 false， 1为 true
+    enable = Column(String(2), nullable=False, default='1', comment='0:不启用, 1:启用')
 
 
 

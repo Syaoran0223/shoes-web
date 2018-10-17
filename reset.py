@@ -34,7 +34,7 @@ def generate_fake_date():
     print('u', u.json())
     teahcer1 = dict(
         name='73',
-        avatar='/static/avatar-73.jpg',
+        avatar='/static/images/avatar-73.png',
         job='曼奇立德高级讲师',
         introduce='自身游戏原画师/CG艺术家',
         type='01'

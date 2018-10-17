@@ -22,7 +22,7 @@ class Picture(SQLMixin, db.Model):
     origin_name = Column(String(50), nullable=False)
     hash = Column(String(100), nullable=True, default='')
     # 1 代表 true 显示图片
-    show = Column(String(1), nullable=False, default=1)
+    enable = Column(String(1), nullable=False, default=1)
 
     @classmethod
     def save_one(cls, img):

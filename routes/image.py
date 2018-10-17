@@ -98,7 +98,7 @@ def delete_more():
 def update():
     form = request.json
     print('form', form)
-    data = Img.update(id=form['id'], show=str(form['show']))
+    data = Img.update(id=form['id'], show=str(form['enable']))
     print('data', data)
     r = Res.success(data)
     return make_response(jsonify(r))
@@ -107,7 +107,7 @@ def update():
 def queryImageByName():
     form = request.args.to_dict()
     print('根据标题搜索数据', form)
-    data, count = Img.queryByCondition(**form)
+    data, count = Img.queryImageByCondition(**form)
     d = dict(
         list=data,
         count=count
