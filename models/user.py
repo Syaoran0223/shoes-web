@@ -24,7 +24,7 @@ class User(SQLMixin, db.Model):
     """
     username = Column(String(50), nullable=False)
     password = Column(String(100), nullable=False)
-    avatar = Column(String(100), nullable=False, default='/images/3.jpg')
+    avatar = Column(String(200), nullable=False, default='/images/3.jpg')
     token = Column(String(20), nullable=False, default='edit')
 
     def add_default_value(self):

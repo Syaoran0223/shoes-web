@@ -31,6 +31,7 @@ def findAll():
     data_json = [d.json() for d in data]
     for i in range(0, len(data_json)):
         data_json[i]['created_time'] = data_json[i]['created_time'].strftime("%Y-%m-%d %H:%M:%S")
+        data_json[i]['updated_time'] = data_json[i]['updated_time'].strftime("%Y-%m-%d %H:%M:%S")
         print('base_url not in data_json avatar ', base_url not in data_json[i]['avatar'])
         if data_json[i]['avatar'] is not None and base_url not in data_json[i]['avatar']:
             data_json[i]['avatar'] = base_url + data_json[i]['avatar']
@@ -98,7 +99,7 @@ def delete_more():
 @main.route('/update', methods=['post'])
 def update():
     form = request.json
-    print('form', form)
+    print('update form', form)
     id = form['id']
     print('update id', id)
     data = Teacher.update(**form)

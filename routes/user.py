@@ -51,7 +51,9 @@ def login():
         r = Res.success(token, msg='登录成功')
     else:
         r = Res.fail({}, '登录失败')
+    print('r',jsonify(r))
     resp = make_response(jsonify(r))
+
     resp.headers["X-Token"] = [token.get('token')]
     return resp
 
@@ -60,15 +62,14 @@ def login():
 @hasToken
 def queryUserInfo(*args, **kwargs):
     print('session', session)
-    # uid = session.get('user_id')
-    uid = 1
+    uid = session.get('user_id')    # uid = 1
     print('queryUserInfo uid', uid)
     u = User.one(id=uid)
     print('queryUserInfo u', u)
     data = dict(
         roles=[u.token],
         name=u.username,
-        avatar='http://thirdwx.qlogo.cn/mmopen/hgXWbMaaqmAj8fAKJJq1nozVgMrm7CfOd7w1W7UleKwFJT2dQbE7W9qRWr04Zra7W1PRQ5fibRZgqr7myOiadx6Q/132',
+        avatar=u.avatar,
     )
     r = Res.success(data)
     resp = make_response(jsonify(r))

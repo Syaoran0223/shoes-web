@@ -58,10 +58,10 @@ class SQLMixin(object):
         m = cls.query.filter_by(id=id).first()
         print('m', m)
         for name, value in kwargs.items():
-
             if name != 'id':
                 print('base update name', name, value)
                 setattr(m, name, value)
+
         print('base update_end m', m)
         db.session.add(m)
         db.session.commit()

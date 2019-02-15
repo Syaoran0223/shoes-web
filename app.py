@@ -18,7 +18,7 @@ def configured_app():
     # 设置 secret_key 来使用 flask 自带的 session
     # 这个字符串随便你设置什么内容都可以
     app.secret_key = secret.secret_key
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:{}@localhost:8806/{}?charset=utf8mb4'.format(
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:{}@localhost:3306/{}?charset=utf8mb4'.format(
         secret.database_password,
         secret.database
     )

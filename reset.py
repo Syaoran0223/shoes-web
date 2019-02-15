@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 
-from config.secret import database_password, database
+from config.secret import database_password, database, database_port
 from app import configured_app
 from models.base_model import db
 from models.teacher import Teacher
@@ -11,9 +11,9 @@ from models.picture import Picture as Img
 from models.user import User
 
 def reset_database():
-    url = 'mysql+pymysql://root:{}@localhost:8806/?charset=utf8mb4'.format(
+    url = 'mysql+pymysql://root:{}@localhost:{}/?charset=utf8mb4'.format(
     # url='mysql+pymysql://root:{}@mysql/?charset=utf8mb4'.format(
-        database_password)
+        database_password, database_port)
     e = create_engine(url, echo=True)
 
     with e.connect() as c:
@@ -28,9 +28,17 @@ def generate_fake_date():
     form = dict(
         username='admin',
         password='admin',
-        token='admin'
+        token='admin',
+        avatar='http://thirdwx.qlogo.cn/mmopen/hgXWbMaaqmAj8fAKJJq1nozVgMrm7CfOd7w1W7UleKwFJT2dQbE7W9qRWr04Zra7W1PRQ5fibRZgqr7myOiadx6Q/132'
     )
     u = User.register(form)
+    user1 = dict(
+        username='feng',
+        password='123456',
+        token='admin',
+        avatar='http://cdn.aixifan.com/dotnet/20130418/umeditor/dialogs/emotion/images/ac/02.gif'
+    )
+    u = User.register(user1)
     print('u', u.json())
     teahcer1 = dict(
         name='73',

@@ -14,7 +14,6 @@ def cors(func):
         # if you need the cookie access, uncomment this line
         r.headers['Access-Control-Allow-Credentials'] = 'true'
         return r
-
     return wrapper_func
 
 def hasToken(func):
