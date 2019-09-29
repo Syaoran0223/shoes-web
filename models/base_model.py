@@ -17,12 +17,17 @@ class SQLMixin(object):
     @classmethod
     def new(cls, form):
         m = cls()
+        print('new before', m)
+
         for name, value in form.items():
+            print(m, name, value)
             setattr(m, name, value)
 
         db.session.add(m)
         db.session.commit()
+        print('new', m)
         return m
+
     @classmethod
     def delete_one(cls, **kwargs):
         print('base delete_one kwargs', kwargs)
@@ -73,8 +78,9 @@ class SQLMixin(object):
         print('base_model all kwargs', kwargs)
         page_size = int(kwargs['page_size'])
         page_index = int(kwargs['page_index'])
-        if page_size and page_index :
-            ms = cls.query.filter_by().limit(page_size).offset((page_index - 1) * page_size).all()
+        if page_size and page_index:
+            ms = cls.query.filter_by().limit(page_size).offset(
+                (page_index - 1) * page_size).all()
         else:
             print('没有页数')
             ms = cls.query.filter_by().all()
@@ -101,12 +107,14 @@ class SQLMixin(object):
                 (page_index - 1) * page_size).all()
         else:
             print('有标题', title)
-            ms = cls.query.filter(cls.file_name.like('%{}%'.format(title))).all()
+            ms = cls.query.filter(
+                cls.file_name.like('%{}%'.format(title))).all()
         # 总数量
         count = db.session.query(func.count(cls.id)).scalar()
         ms = [m.json() for m in ms]
         print('搜索结果', ms)
         return ms, count
+
     @classmethod
     def queryByCondition(cls, **kwargs):
         print('base_model all kwargs', kwargs)
@@ -131,6 +139,7 @@ class SQLMixin(object):
         ms = [m.json() for m in ms]
         print('搜索结果', ms)
         return ms, count
+
     @classmethod
     def one(cls, **kwargs):
         ms = cls.query.filter_by(**kwargs).first()

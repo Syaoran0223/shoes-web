@@ -4,14 +4,11 @@ from flask import Flask
 # 跨域
 from flask_cors import CORS
 from models.base_model import db
-# from config import secret
-from config import dev
-secret = dev
+from config import secret
 from routes.index import main as index_routes
 from routes.user import main as user_routes
 from routes.image import main as image
 from routes.teacher import main as teacher_routes
-from routes.product import main as product_routes
 
 
 def configured_app():
@@ -28,7 +25,6 @@ def configured_app():
     #     secret.database_password,
     #     secret.database
     # )
-
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://{username}:{password}@{db_addr}:{db_port}/{db_name}'.\
         format(username=secret.db_username, password=secret.db_password,
                db_addr=secret.db_addr, db_name=secret.db_name, db_port=secret.db_port)
@@ -43,7 +39,6 @@ def register_routes(app):
     app.register_blueprint(user_routes, url_prefix='/api/user')
     app.register_blueprint(image, url_prefix='/api/image')
     app.register_blueprint(teacher_routes, url_prefix='/api/teacher')
-    app.register_blueprint(product_routes, url_prefix='/api/product')
 
 
 # 运行代码
@@ -56,8 +51,6 @@ if __name__ == '__main__':
     app.jinja_env.auto_reload = True
     app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
     app.config['JSON_AS_ASCII'] = False
-    # 显示sql运行的语句
-    app.config["SQLALCHEMY_ECHO"] = True
     config = dict(
         debug=True,
         host=host,

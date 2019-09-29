@@ -17,7 +17,8 @@ main = Blueprint('index', __name__)
 @main.route("/", methods=['GET'])
 def index():
     # u = current_user()
-    return render_template("index.html")
+    return '123'
+    # return render_template("index.html")
 
 @main.route('/static/images/<filename>', methods=['GET'])
 def image(filename):

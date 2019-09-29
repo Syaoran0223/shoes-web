@@ -15,6 +15,7 @@ from flask import (
     send_from_directory
 )
 
+
 class User(SQLMixin, db.Model):
     __tablename__ = 'User'
     """
@@ -26,6 +27,13 @@ class User(SQLMixin, db.Model):
     password = Column(String(100), nullable=False)
     avatar = Column(String(200), nullable=False, default='/images/3.jpg')
     token = Column(String(20), nullable=False, default='edit')
+
+    @staticmethod
+    def validateSQL():
+        sql = "select * from user"
+        r = db.session.execute(str)
+        print('测试语句', r)
+        return
 
     def add_default_value(self):
         super().add_default_value()
@@ -53,7 +61,7 @@ class User(SQLMixin, db.Model):
             username=form['username'],
             password=User.salted_password(form['password']),
         )
-        print('validate_login', form, query)        
+        print('validate_login', form, query)
         return User.one(**query)
 
     @classmethod
