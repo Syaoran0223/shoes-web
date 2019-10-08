@@ -3,30 +3,65 @@ import time
 import datetime
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Column, Integer, String, func, DateTime
-
 db = SQLAlchemy()
 
+from sqlalchemy import Column, Integer, String, func, DateTime
+import json
+from flask_sqlalchemy import SQLAlchemy
+db = SQLAlchemy()
 
 class SQLMixin(object):
     id = Column(Integer, primary_key=True, nullable=False, autoincrement=True)
     created_time = Column(DateTime, default=datetime.datetime.utcnow)
     updated_time = Column(DateTime, default=datetime.datetime.utcnow)
     # updated_time = Column(Integer, default=int(time.time()))
+    @classmethod
+    def sql_to_list(cls, proxy):
+        list = []
+        for row in proxy:
+            print('row.keys', row.keys())
+            print('row values', row.values())
+            list.append(dict(zip(row.keys(), row.values())))
+        return list
 
+    @classmethod
+    def sql_to_dict(cls, proxy):
+        list = cls.sql_to_list(proxy)
+        print('to dict ', list)
+        return list[0]
     @classmethod
     def new(cls, form):
         m = cls()
-        print('new before', m)
-
+        # print('new before', m)
         for name, value in form.items():
-            print(m, name, value)
+            # print(m, name, value)
             setattr(m, name, value)
 
         db.session.add(m)
         db.session.commit()
-        print('new', m)
+        # print('newTest', m)
         return m
+    @classmethod
+    def new_by_list(cls,list):
+        print('form in model', list)
+        r = []
+        for form in list:            
+            length = int(form.get('count'))
+            print('form', form)
+            print('数量', length)
+            for index in range(length):
+                # print('ssss', index)
+                m = cls()
+                for name, value in form.items():                    
+                    setattr(m, name, value)
+                db.session.add(m)
+                print('m', index,m)
+
+                # list.append(m.json())
+                # db.session.add(m)
+        db.session.commit()
+        
+        return r
 
     @classmethod
     def delete_one(cls, **kwargs):
@@ -75,16 +110,18 @@ class SQLMixin(object):
 
     @classmethod
     def all(cls, **kwargs):
-        print('base_model all kwargs', kwargs)
-        page_size = int(kwargs['page_size'])
-        page_index = int(kwargs['page_index'])
-        if page_size and page_index:
-            ms = cls.query.filter_by().limit(page_size).offset(
-                (page_index - 1) * page_size).all()
-        else:
-            print('没有页数')
-            ms = cls.query.filter_by().all()
-        print('all sql ', cls, ms)
+        # print('base_model all kwargs', kwargs)
+        # if int(kwargs['page_size']) and int(kwargs['page_index']):
+        #     page_size = int(kwargs['page_size'])
+        #     page_index = int(kwargs['page_index'])
+        #     ms = cls.query.filter_by().limit(page_size).offset(
+        #         (page_index - 1) * page_size).all()
+        # else:
+        #     print('没有页数')
+        #     ms = cls.query.filter_by().all()
+        # print('all sql ', cls, ms)
+        ms = cls.query.filter_by().all()
+        ms = [m.json() for m in ms]
         count = db.session.query(func.count(cls.id)).scalar()
 
         return ms, count
@@ -150,6 +187,13 @@ class SQLMixin(object):
     def columns(cls):
         return cls.__mapper__.c.items()
 
+    def default(self, obj):
+        print('执行了的defalut')
+        if isinstance(obj, datetime.datetime):
+            return obj.strftime("%Y-%m-%d %H:%M:%S")
+        else:
+            return json.JSONEncoder.default(self, obj)
+
     def __repr__(self):
         """
         __repr__ 是一个魔法方法
@@ -176,6 +220,11 @@ class SQLMixin(object):
                 v = getattr(self, attr)
                 d[attr] = v
         return d
+
+    def column_dict(self):
+        model_dict = dict(self.__dict__)
+        del model_dict['_sa_instance_state']
+
     # def sqlJson(self):
 
     # def json(self):
@@ -190,7 +239,7 @@ class SimpleUser(SQLMixin, db.Model):
 
 
 if __name__ == '__main__':
-    db.create_all()
+    # db.create_all()
     form = dict(
         username='feng',
         password='123',

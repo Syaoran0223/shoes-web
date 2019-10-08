@@ -2,10 +2,9 @@ import hashlib
 import os
 import uuid
 import base64
-from sqlalchemy import Column, String, Text
+from sqlalchemy import Column, String, Text, Integer
 from config.secret import secret_key
 from models.base_model import SQLMixin, db
-
 from PIL import Image
 from flask import (
     url_for
@@ -19,13 +18,15 @@ class Picture(SQLMixin, db.Model):
     src = Column(String(100), nullable=False)
     width = Column(String(100), nullable=False)
     height = Column(String(20), nullable=False)
-    origin_name = Column(String(50), nullable=False)
-    hash = Column(String(100), nullable=True, default='')
+    origin_name = Column(String(1000), nullable=False)
+    hash = Column(String(1000), nullable=True, default='')
+    product_id = Column(Integer,nullable=True,comment='商品id')
     # 1 代表 true 显示图片
     enable = Column(String(1), nullable=False, default=1)
 
     @classmethod
-    def save_one(cls, img):
+    def save_one(cls, img, form):
+        print('form', form.get('product_id'))
         suffix = img.filename.split('.')[-1]
         filename = '{}.{}'.format(str(uuid.uuid4()), suffix)
         print('文件名', filename)
@@ -36,6 +37,7 @@ class Picture(SQLMixin, db.Model):
         img_size = Image.open(img).size
         # 图片转码 base64 ， 计算 hash 值，保存\
         is_same_hash, hash_img = cls.img_to_hash(img)
+        print('origin_name', img.filename)
         # img.save(path)
         if is_same_hash is None:
             print('查询结果是 None')
@@ -45,7 +47,8 @@ class Picture(SQLMixin, db.Model):
                 width=img_size[0],
                 height=img_size[1],
                 src=path.replace('\\', '/'),
-                hash=hash_img
+                hash=hash_img,
+                product_id=form.get('product_id')
             )
             r = cls.new(data).json()
             # temp_img.save(path)
@@ -55,6 +58,7 @@ class Picture(SQLMixin, db.Model):
             print('{} 已存在'.format(img.filename))
             os.remove(path)
             r = is_same_hash.json()
+
         return r
     @classmethod
     def img_to_hash(cls,img):

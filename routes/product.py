@@ -18,10 +18,15 @@ from flask import (
 from models.res import Res
 from routes import cors, hasToken, formatParams
 from models.product import Product
+from models.product_attr import ProductAttr
+from models.stock import Stock
 from models.res import Res
 from config.base import base_url
+from models.picture import Picture as Img
+from config.base import base_url
+import xlrd
 
-main = Blueprint('product', __name__)
+main = Blueprint('product_router', __name__)
 
 
 @main.route("/", methods=['GET'])
@@ -29,17 +34,75 @@ def index():
     # u = current_user()
     return '1234444 product'
 
+@main.route('/queryProductType', methods=['POST'])
+def queryProdcut():
+    # 查询商品大类
+    r = Product.queryAll()
+    r = Res.success(r)
+    print('查询所有商品',r)
+    return make_response(jsonify(r))
+
+@main.route('/addProductType', methods=['POST'])
+def addProductType():
+    # form : product_id, bar_code
+    form = request.form.to_dict()
+    print('form', form)
+    # 上传图片
+    file = request.files['file']
+    if file is not None:
+        # 储存图片获取数据
+        data = Img.save_one(file, form)
+        print('upload data', data)
+        if data['src'] is not None and base_url not in data['src']:
+            data['src'] = base_url + '/' + data['src']
+            form['cover'] = data['src']
+        if data is not None:
+            r = Res.success(data)
+        else:
+            r = Res.fail({}, msg='图片已存在')
+    print('新图片', form)
+    product = Product.add(form)
+    if type(product) is str:
+        r = Res.fail(msg=product)
+    else:
+        all = Product.all()
+        print('all', all)
+        r = Res.success(all)
+
+    return make_response(jsonify(r))
+
+@main.route('/queryProduct', methods=['POST'])
+def queryProdcutAttr():
+    # 查询对应商品子类
+    r = ProductAttr.queryAll()
+    r = Res.success(r)
+    print('查询所有商品')
+    return make_response(jsonify(r))
+
 
 @main.route('/addProduct', methods=['POST', 'GET'])
-def addProdect():
-    form = request.form
-    print('发送成功', form)
-    data = Product.addProduct(form)    
-    print('data', data)
-    r = Res.success(data)
-    print('发送成功的处理结果jsonify(r)', jsonify(r))
-    return make_response(r)
+def addProduct():
+    form = request.form.to_dict()
+    print('form', form)
+    product_attr = ProductAttr.add(form)
+    print('product_attr', product_attr)
+    if type(product_attr) is str:
+        r = Res.fail(msg=product_attr)
+    else:
+        r = product_attr
+        r = Res.success(product_attr)
+    return make_response(jsonify(r))
 
+@main.route('/queryProductByBarCode',methods=['POST'])
+def queryProductByBarCode():
+    form= request.form.to_dict()
+    q = ProductAttr.queryByBarCode(form)
+    if len(q) is 0:
+        r = Res.fail(q.msg)
+    else:
+        r = Res.success(q)
+
+    return make_response(jsonify(r))
 
 @main.route('/delete', methods=['POST'])
 def delete():
@@ -55,8 +118,10 @@ def delete():
     return
 
 
-@main.route('/all', methods=['GET'])
+@main.route('/queryProduct', methods=['GET'])
 def findAll():
+    r = ProductAttr.all()
+    print('r', r)
     # form = request.args.to_dict()
     # page_size = form.get('page_size') or None
     # page_index = form.get('page_index') or None
@@ -113,3 +178,75 @@ def update():
     # r = Res.success(data)
     # return make_response(jsonify(r))
     return
+
+# 测试上传excel
+# todo excel 内字段不规则 无法直接导入
+@main.route("/uploadFile", methods=['POST', 'GET'])
+def uploadFile():
+    print(request.files)
+    file = request.files['file']
+    print('file', type(file), file)
+    print('文件名',file.filename)  # 打印文件名
+    f = file.read()  # 文件内容
+    data = xlrd.open_workbook(file_contents=f)    
+    table = data.sheets()[0]
+    names = data.sheet_names()  # 返回book中所有工作表的名字
+    status = data.sheet_loaded(names[0])  # 检查sheet1是否导入完毕
+    print('导入状态',status)
+    nrows = table.nrows  # 获取该sheet中的有效行数
+    ncols = table.ncols  # 获取该sheet中的有效列数
+    # print('nrows',nrows)
+    # print('ncols',ncols)
+    s = table.col_values(2)  # 第1列数据
+    # print('尺码', s)
+    r = formatExcel(table)
+    Stock.add_by_count(r)
+    # print('导入结果', r)
+    return make_response(jsonify(Res.success(r)))
+def formatExcel(table):
+    # 获取排列长度
+    rowlen = table.nrows
+    # 结果 临时变量
+    result = []
+    t = ''
+    head = dict()
+    # 循环列表 补全货号
+    for i in range(0, rowlen):
+        row = table.row_values(i)
+        if i == 0:
+            head = formatHeadToSql(row)
+            # 格式head  excel -> sql
+            print('head', head)
+        else:
+            if len(row[0]) == 0:
+                row = t
+            else:
+                t = row
+            result.append(dict(zip(head, row)))        
+    return result
+
+def formatHeadToSql(head):
+    headMap = dict(
+        货号='code',
+        备注='name',
+        状态='status',
+        # 成本='cost',
+        出价='cost',
+        售价='price',
+        运费='express_price',
+        利润='profit',
+        实际收益='profit',
+        订单='order_id',
+        批次='batch',
+        尺码='size',
+        数量='count',
+    )
+    keyMap = headMap.keys()
+    
+    r = []
+    for h in head:
+        if h != '' and h in keyMap:
+            h = headMap[h]
+            r.append(h)
+    return r
+

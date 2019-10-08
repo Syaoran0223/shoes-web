@@ -12,7 +12,6 @@ class Res(object):
 
     @classmethod
     def success(cls, form={}, msg='success'):
-        # print('success', form)
         r = cls(form)
         r.msg = msg
         return r.__dict__
