@@ -2,6 +2,7 @@ import os
 import time
 import uuid
 
+from models.stock import Stock
 from utils import log
 from flask import (
     render_template,
@@ -17,97 +18,35 @@ from flask import (
 )
 from models.res import Res
 from routes import cors, hasToken, formatParams
-from models.product import Product
-from models.product_attr import ProductAttr
-from models.stock import Stock
+from models.batch import Batch
 from models.res import Res
-from config.base import base_url
-from models.picture import Picture as Img
 from config.base import base_url
 import xlrd
 
-main = Blueprint('product_router', __name__)
+main = Blueprint('batch_router', __name__)
 
 
 @main.route("/", methods=['GET'])
 def index():
     # u = current_user()
-    return '1234444 product'
+    return 'api from batch'
 
 
-@main.route('/queryProductType', methods=['POST'])
-def queryProdcut():
+@main.route('/query', methods=['POST'])
+def query_all():
     # 查询商品大类
-    r = Product.queryAll()
+    r = Batch.all()
     r = Res.success(r)
     print('查询所有商品', r)
     return make_response(jsonify(r))
 
-
-@main.route('/addProductType', methods=['POST'])
-def addProductType():
-    # form : product_id, bar_code
+@main.route('/addBatch', methods=['POST'])
+def add_one():
     form = request.form.to_dict()
-    print('form', form)
-    # 上传图片
-    file = request.files['file']
-    if file is not None:
-        # 储存图片获取数据
-        data = Img.save_one(file, form)
-        print('upload data', data)
-        if data['src'] is not None and base_url not in data['src']:
-            data['src'] = base_url + '/' + data['src']
-            form['cover'] = data['src']
-        if data is not None:
-            r = Res.success(data)
-        else:
-            r = Res.fail({}, msg='图片已存在')
-    print('新图片', form)
-    product = Product.add(form)
-    if type(product) is str:
-        r = Res.fail(msg=product)
-    else:
-        all = Product.all()
-        print('all', all)
-        r = Res.success(all)
-
-    return make_response(jsonify(r))
-
-
-@main.route('/queryProduct', methods=['POST'])
-def queryProdcutAttr():
-    # 查询对应商品子类
-    r = ProductAttr.queryAll()
+    print('form in add batch', form)
+    r = Batch.new(form).json()
     r = Res.success(r)
-    print('查询所有商品')
     return make_response(jsonify(r))
-
-
-@main.route('/addProduct', methods=['POST', 'GET'])
-def addProduct():
-    form = request.form.to_dict()
-    print('form', form)
-    product_attr = ProductAttr.add(form)
-    print('product_attr', product_attr)
-    if type(product_attr) is str:
-        r = Res.fail(msg=product_attr)
-    else:
-        r = product_attr
-        r = Res.success(product_attr)
-    return make_response(jsonify(r))
-
-
-@main.route('/queryProductByBarCode', methods=['POST'])
-def queryProductByBarCode():
-    form = request.form.to_dict()
-    q = ProductAttr.queryByBarCode(form)
-    if len(q) is 0:
-        r = Res.fail(q.msg)
-    else:
-        r = Res.success(q)
-
-    return make_response(jsonify(r))
-
 
 @main.route('/delete', methods=['POST'])
 def delete():
@@ -123,29 +62,6 @@ def delete():
     return
 
 
-@main.route('/queryProduct', methods=['GET'])
-def findAll():
-    r = ProductAttr.all()
-    print('r', r)
-    # form = request.args.to_dict()
-    # page_size = form.get('page_size') or None
-    # page_index = form.get('page_index') or None
-    # data, count = Img.all(page_size=page_size, page_index=page_index)
-    # data_json = [d.json() for d in data]
-    # for d in data_json:
-    #     # format = '%Y-%m-%d %H:%M:%S'
-    #     ct = d['created_time']
-    #     # d['created_time'] = '{}-{}-{} {}:{}:{}'.format(ct.year, ct.month, ct.day, ct.hour, ct.minute, ct.second)
-    #     d['created_time'] = ct.strftime("%Y-%m-%d %H:%M:%S")
-
-    # d = dict(
-    #     list=data_json,
-    #     count=count
-    # )
-    # r = Res.success(d)
-    # resp = make_response(jsonify(r))
-    # return resp
-    return
 
 
 @main.route('/delete', methods=['POST'])

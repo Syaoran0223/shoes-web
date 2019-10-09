@@ -123,9 +123,22 @@ class SQLMixin(object):
         # print('all sql ', cls, ms)
         ms = cls.query.filter_by().all()
         ms = [m.json() for m in ms]
-        count = db.session.query(func.count(cls.id)).scalar()
+        filterMap = ['created_time', 'updated_time', 'purchase_time']
+        # 格式化日期
+        for m in ms:
+            for i in m:
+                if i in filterMap:
+                    # format = '%Y-%m-%d %H:%M:%S'
+                    ct = m[i]
+                    # d['created_time'] = '{}-{}-{} {}:{}:{}'.format(ct.year, ct.month, ct.day, ct.hour, ct.minute, ct.second)
+                    m[i] = ct.strftime("%Y-%m-%d %H:%M:%S")
 
-        return ms, count
+        total = db.session.query(func.count(cls.id)).scalar()
+        r = dict(
+            list = ms,
+            total = total,
+        )
+        return r
 
     @classmethod
     def queryImageByCondition(cls, **kwargs):

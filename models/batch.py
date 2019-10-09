@@ -1,16 +1,19 @@
 import hashlib
+import datetime
 
-from sqlalchemy import Column, String, Text, Float, Integer, text
+
+from sqlalchemy import Column, String, Text, Float, Integer, text, DateTime
 from models.base_model import SQLMixin, db
 
 
-class Stock(SQLMixin, db.Model):
+class Batch(SQLMixin, db.Model):
     # 批次表 库存表
     __tablename__ = 'batch'
-    batch = Column(String(50),comment='批次', nullable=False)
-    code = Column(String(50), comment='编码')
-    name = Column(String(50), nullable=False, comment='名称')
-    proportion = Column(Float, comment='比例')
+    name = Column(String(50), comment='名称')
+    # 参与人员 比例
+    proportion = Column(Integer, comment='比例')
+    # 进货时间
+    purchase_time = Column(DateTime, comment='进货时间')
 
 
     @classmethod

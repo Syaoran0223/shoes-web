@@ -44,14 +44,7 @@ class User(SQLMixin, db.Model):
             print('查询到用户', r)
         # 返回部分字段
         r = r.json()
-
-        filterMap = ['openid', 'id','updated_time']
-        result = dict()
-        for k in r.keys():
-            if  k in filterMap:
-                result[k] = r[k]
-
-        return result
+        return r
 
     @staticmethod
     def validateSQL():

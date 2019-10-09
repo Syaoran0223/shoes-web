@@ -11,12 +11,8 @@ from models.base_model import db
 from models.product import Product
 from models.product_attr import ProductAttr
 from models.user import User
+from models.batch import Batch
 from models.dictMap import DictMap
-from models.batch import Stock
-# from models.board import Board
-# from models.reply import Reply
-# from models.topic import Topic
-# from models.user import User
 
 print('数据类型', secret.db_port)
 def reset_database():
@@ -119,7 +115,19 @@ def generate_fake_date():
         },
 
     ]
-
+    # 新增批次
+    b1 = dict(
+        batch='2019-8-26',
+        name='测试',
+        proportion=5
+    )
+    b2 = dict(
+        batch='2019-9-1',
+        name='批次2',
+        proportion=10
+    )
+    Batch.new(b1)
+    Batch.new(b2)
 
     # # 增加商品
     # s1 = dict(
