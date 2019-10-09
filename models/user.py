@@ -1,6 +1,6 @@
 import hashlib
 
-from sqlalchemy import Column, String, Text
+from sqlalchemy import Column, String, Text, Integer
 from config.secret import secret_key
 from models.base_model import SQLMixin, db
 from flask import (
@@ -23,16 +23,40 @@ class User(SQLMixin, db.Model):
     现在只有两个属性 username 和 password
     level 有两个属性 'admin', 'edit'
     """
-    username = Column(String(50), nullable=False)
-    password = Column(String(100), nullable=False)
-    avatar = Column(String(200), nullable=False, default='/images/3.jpg')
-    token = Column(String(20), nullable=False, default='edit')
+    username = Column(String(50))
+    password = Column(String(100))
+    avatar = Column(String(200))
+    token = Column(String(20))
+    openid = Column(String(100), nullable=False)
+    unionid = Column(String(100))
+    session_key = Column(String(100))
+    identity = Column(Integer, default=1)
+
+    @classmethod
+    def login(cls, form):
+        # openid =
+        print('form', form.get('openid'))
+        r = cls.one(openid=form.get('openid'))
+        if r is None:
+            r = cls.new(form)
+            print('没有用户 新增', r)
+        else:
+            print('查询到用户', r)
+        # 返回部分字段
+        r = r.json()
+
+        filterMap = ['openid', 'id','updated_time']
+        result = dict()
+        for k in r.keys():
+            if  k in filterMap:
+                result[k] = r[k]
+
+        return result
 
     @staticmethod
     def validateSQL():
         sql = "select * from user"
         r = db.session.execute(str)
-        print('测试语句', r)
         return
 
     def add_default_value(self):

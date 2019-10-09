@@ -44,24 +44,25 @@ class SQLMixin(object):
     @classmethod
     def new_by_list(cls,list):
         print('form in model', list)
-        r = []
+        ms = []
         for form in list:            
             length = int(form.get('count'))
             print('form', form)
-            print('数量', length)
-            for index in range(length):
+            print('数量', length)            
+            for index in range(length):                
                 # print('ssss', index)
                 m = cls()
                 for name, value in form.items():                    
-                    setattr(m, name, value)
+                    setattr(m, name, value)                
                 db.session.add(m)
+                ms.append(m)
                 print('m', index,m)
 
                 # list.append(m.json())
                 # db.session.add(m)
         db.session.commit()
-        
-        return r
+        ms = [m.json() for m in ms]
+        return ms
 
     @classmethod
     def delete_one(cls, **kwargs):

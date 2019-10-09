@@ -10,9 +10,8 @@ from models.base_model import db
 # from models.picture import Picture as Img
 from models.product import Product
 from models.product_attr import ProductAttr
-from models.user import User
-from models.dictMap import DictMap
-from models.batch import Stock
+from models.stock import Stock
+from models.batch import Batch
 # from models.board import Board
 # from models.reply import Reply
 # from models.topic import Topic
@@ -79,48 +78,6 @@ def generate_fake_date():
     print('p3', p3)
     p4 = ProductAttr.all()
     print('p444444444444', p4)
-    # 增加用户
-    u = dict(
-        openid="oACYX0d8qtLPAZ6Mtx0sgBY3AtGw",
-        identity=0,
-    )
-    User.login(u)
-    # 增加字典表
-    d1 = [
-        {
-            'key': 'identity',
-            'value': 0,
-            'note': '管理员',
-            'table': 'user',
-         },
-        {
-            'key': 'identity',
-            'value': 1,
-            'note': '普通用户',
-            'table': 'user'
-        },
-        {
-            'key': 'status',
-            'value': 0,
-            'note': '未出售',
-            'table': 'stock'
-        },
-        {
-            'key': 'identity',
-            'value': 1,
-            'note': '已出售',
-            'table': 'stock'
-        },
-        {
-            'key': 'identity',
-            'value': 1,
-            'note': '瑕疵',
-            'table': 'stock'
-        },
-
-    ]
-
-
     # # 增加商品
     # s1 = dict(
     #     status=0,

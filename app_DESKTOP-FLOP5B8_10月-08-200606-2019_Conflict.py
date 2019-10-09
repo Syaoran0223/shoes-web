@@ -10,20 +10,20 @@ from config import secret
 from routes.index import main as index_routes
 from routes.user import main as user_routes
 from routes.image import main as image
-# from routes.teacher import main as teacher_routes
 from routes.product import main as product_routes
+from routes.stock import main as stock_routes
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
-
 from models.product import Product
+
 
 
 def register_routes(app):
     app.register_blueprint(index_routes)
     app.register_blueprint(user_routes, url_prefix='/api/user')
-    app.register_blueprint(image, url_prefix='/api/image')
-    # app.register_blueprint(teacher_routes, url_prefix='/api/teacher')
+    app.register_blueprint(image, url_prefix='/api/image')    
     app.register_blueprint(product_routes, url_prefix='/api/product')
+    app.register_blueprint(stock_routes, url_prefix='/api/stock')
 
 def configured_app():
     app = Flask(__name__, static_folder='')

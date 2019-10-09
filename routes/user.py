@@ -1,5 +1,7 @@
 import os
 import uuid
+from config import base
+import requests
 
 from utils import log
 from flask import (
@@ -31,10 +33,14 @@ def register():
 
 @main.route("/login", methods=['POST'])
 def login():
-    print('request.header', request.headers)
-    # form = request.form
-    form = request.json
-    print('form', form)
+    form = request.form.to_dict()
+    wxloginUrl = """https://api.weixin.qq.com/sns/jscode2session?appid={appid}&secret={appSecret}&js_code={code}&grant_type=authorization_code""".format(appid=base.appid, appSecret=base.appSecret, code=form.get('code'))
+    res = requests.post(wxloginUrl).json()
+    r = User.login(res)
+    resp = make_response(jsonify(r))
+    return resp
+
+
     u = User.validate_login(form)
     print('login, u', u)
     if u is not None:

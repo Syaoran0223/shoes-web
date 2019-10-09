@@ -5,28 +5,25 @@ from models.base_model import SQLMixin, db
 
 
 class Stock(SQLMixin, db.Model):
+    # 批次表 库存表
     __tablename__ = 'shoes_stock'
-    code= Column(String,comment='货号')
-    name = Column(String, comment='备注')
-    product_id = Column(Integer, comment='产品id')
+    name = Column(String(50), nullable=False, comment='名称')
+    code = Column(String(50), comment='编码')
+    # product_id = Column(Integer, comment='产品id')
     status = Column(Integer, comment='0：待发货，1：发货，3瑕疵', default=0)
-    cost = Column(Float, comment='进价')
+    cost = Column(Float, comment='成本 - excel(出价)')
     price = Column(Float, comment='售价')
     express_price = Column(Float,comment='运费')
     profit = Column(Float,comment='利润')
-    order_id = Column(String(50), comment='所属订单')
+    exporess_number = Column(String(50), comment='快递单号')
     batch = Column(String(50),comment='批次')
+    size = Column(Float, comment='尺寸')
+
 
     @classmethod
     def add_by_count(cls,form):
-        # params:
-        #   status 0
-        #   cost 0
-        #   count 1
-        #   product id
         print('商品参数详情', form)
-        p = cls.new_by_count(form)
-        print('新增鞋子', p)
+        p = cls.new_by_list(form)        
         return p
 
     @classmethod

@@ -34,13 +34,15 @@ def index():
     # u = current_user()
     return '1234444 product'
 
+
 @main.route('/queryProductType', methods=['POST'])
 def queryProdcut():
     # 查询商品大类
     r = Product.queryAll()
     r = Res.success(r)
-    print('查询所有商品',r)
+    print('查询所有商品', r)
     return make_response(jsonify(r))
+
 
 @main.route('/addProductType', methods=['POST'])
 def addProductType():
@@ -71,6 +73,7 @@ def addProductType():
 
     return make_response(jsonify(r))
 
+
 @main.route('/queryProduct', methods=['POST'])
 def queryProdcutAttr():
     # 查询对应商品子类
@@ -93,9 +96,10 @@ def addProduct():
         r = Res.success(product_attr)
     return make_response(jsonify(r))
 
-@main.route('/queryProductByBarCode',methods=['POST'])
+
+@main.route('/queryProductByBarCode', methods=['POST'])
 def queryProductByBarCode():
-    form= request.form.to_dict()
+    form = request.form.to_dict()
     q = ProductAttr.queryByBarCode(form)
     if len(q) is 0:
         r = Res.fail(q.msg)
@@ -103,6 +107,7 @@ def queryProductByBarCode():
         r = Res.success(q)
 
     return make_response(jsonify(r))
+
 
 @main.route('/delete', methods=['POST'])
 def delete():
@@ -181,49 +186,63 @@ def update():
 
 # 测试上传excel
 # todo excel 内字段不规则 无法直接导入
+
+
 @main.route("/uploadFile", methods=['POST', 'GET'])
 def uploadFile():
-    print(request.files)
+    print('接收信息', request.files)
     file = request.files['file']
     print('file', type(file), file)
-    print('文件名',file.filename)  # 打印文件名
+    print('文件名', file.filename)  # 打印文件名
+    print('name', file.name)
     f = file.read()  # 文件内容
-    data = xlrd.open_workbook(file_contents=f)    
+    data = xlrd.open_workbook(file_contents=f)
     table = data.sheets()[0]
     names = data.sheet_names()  # 返回book中所有工作表的名字
+
     status = data.sheet_loaded(names[0])  # 检查sheet1是否导入完毕
-    print('导入状态',status)
+    print('导入状态', status)
     nrows = table.nrows  # 获取该sheet中的有效行数
     ncols = table.ncols  # 获取该sheet中的有效列数
     # print('nrows',nrows)
     # print('ncols',ncols)
     s = table.col_values(2)  # 第1列数据
-    # print('尺码', s)
-    r = formatExcel(table)
-    Stock.add_by_count(r)
+    print('尺码', s)
+    table_name = names[0]
+    res = formatExcel(table)
+    # 根据文件名添加批次
+    for r in res:
+        r['batch'] = table_name
+    
+    r = Stock.add_by_count(res)
     # print('导入结果', r)
     return make_response(jsonify(Res.success(r)))
+
+
 def formatExcel(table):
-    # 获取排列长度
+    # 获取排列长度        
     rowlen = table.nrows
+    # 处理头部
+    head = formatHeadToSql(table.row_values(0))
     # 结果 临时变量
     result = []
     t = ''
-    head = dict()
     # 循环列表 补全货号
-    for i in range(0, rowlen):
+    for i in range(1, rowlen):
         row = table.row_values(i)
-        if i == 0:
-            head = formatHeadToSql(row)
-            # 格式head  excel -> sql
-            print('head', head)
-        else:
-            if len(row[0]) == 0:
-                row = t
-            else:
-                t = row
-            result.append(dict(zip(head, row)))        
+        print('测试', row,)
+        # 0 货号 1 备注
+        if len(row[0]) == 0:
+            row[0] = t[0]
+        if len(row[1]) == 0:
+            row[1] = t[1]
+        t = row
+        # 去除货号前后空格
+        row[0] = row[0].strip()
+        print('完成', row)
+        result.append(dict(zip(head, row)))
     return result
+
 
 def formatHeadToSql(head):
     headMap = dict(
@@ -242,11 +261,10 @@ def formatHeadToSql(head):
         数量='count',
     )
     keyMap = headMap.keys()
-    
+
     r = []
     for h in head:
         if h != '' and h in keyMap:
             h = headMap[h]
             r.append(h)
     return r
-
