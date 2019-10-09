@@ -11,13 +11,3 @@
 
 
 head  = ['货号', '备注', '尺码', '数量', '出价']
-
-
-def formatHeadToSql(head):
-
-    # for hm in headMap:
-    #     print('head', hm)
-#
-
-
-formatHeadToSql(head)
