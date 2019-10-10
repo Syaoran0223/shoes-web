@@ -40,6 +40,7 @@ def query_all():
     print('查询所有商品', r)
     return make_response(jsonify(r))
 
+
 @main.route('/addBatch', methods=['POST'])
 def add_one():
     form = request.form.to_dict()
@@ -48,32 +49,16 @@ def add_one():
     r = Res.success(r)
     return make_response(jsonify(r))
 
-@main.route('/delete', methods=['POST'])
+
+@main.route('/deleteBatch', methods=['POST'])
 def delete():
-    form = request.json
-
-    # data = Img.delete_one(id=form.get('id'))
-    # print('delete form', data is None)
-    # if data is None:
-    # r = Res.success()
-    # else:
-    # r = Res.fail(msg='图片删除失败')
-    # return make_response(jsonify(r))
-    return
-
-
-
-
-@main.route('/delete', methods=['POST'])
-def delete_one():
-    return
-    # id = request.json.get('id')
-    # data = Img.delete_one(id=id)
-    # if data is None:
-    #     r = Res.success()
-    # else:
-    #     r = Res.fail()
-    # return make_response(jsonify(r))
+    form = request.form.to_dict()
+    id = form.get('id')
+    r = Stock.delete_by_batch_id(id=id)
+    r = Batch.delete_by_ids(id)
+    r = Batch.all()
+    print('删除', r)
+    return make_response(jsonify(r))
 
 
 @main.route('/delete_more', methods=['POST'])
@@ -90,15 +75,14 @@ def delete_more():
     return
 
 
-@main.route('/update', methods=['post'])
+@main.route('/updateBatch', methods=['post'])
 def update():
-    # form = request.json
-    # print('form', form)
-    # data = Img.update(id=form['id'], show=str(form['enable']))
-    # print('data', data)
-    # r = Res.success(data)
-    # return make_response(jsonify(r))
-    return
+    form = request.form.to_dict()
+    print('form', form)
+    data = Batch.update(**form)
+    print('data', data)
+    r = Res.success(data)
+    return make_response(jsonify(r))
 
 # 测试上传excel
 # todo excel 内字段不规则 无法直接导入
@@ -106,6 +90,7 @@ def update():
 
 @main.route("/uploadFile", methods=['POST', 'GET'])
 def uploadFile():
+ 
     print('接收信息', request.files)
     file = request.files['file']
     print('file', type(file), file)
@@ -113,7 +98,7 @@ def uploadFile():
     print('name', file.name)
     f = file.read()  # 文件内容
     data = xlrd.open_workbook(file_contents=f)
-    table = data.sheets()[0]
+    table = data.sheepts()[0]
     names = data.sheet_names()  # 返回book中所有工作表的名字
 
     status = data.sheet_loaded(names[0])  # 检查sheet1是否导入完毕
@@ -129,14 +114,14 @@ def uploadFile():
     # 根据文件名添加批次
     for r in res:
         r['batch'] = table_name
-    
+
     r = Stock.add_by_list(res)
     # print('导入结果', r)
     return make_response(jsonify(Res.success(r)))
 
 
 def formatExcel(table):
-    # 获取排列长度        
+    # 获取排列长度
     rowlen = table.nrows
     # 处理头部
     head = formatHeadToSql(table.row_values(0))

@@ -10,11 +10,13 @@ import json
 from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
+
 class SQLMixin(object):
     id = Column(Integer, primary_key=True, nullable=False, autoincrement=True)
     created_time = Column(DateTime, default=datetime.datetime.utcnow)
     updated_time = Column(DateTime, default=datetime.datetime.utcnow)
     # updated_time = Column(Integer, default=int(time.time()))
+
     @classmethod
     def sql_to_list(cls, proxy):
         list = []
@@ -29,6 +31,7 @@ class SQLMixin(object):
         list = cls.sql_to_list(proxy)
         print('to dict ', list)
         return list[0]
+
     @classmethod
     def new(cls, form):
         m = cls()
@@ -41,22 +44,23 @@ class SQLMixin(object):
         db.session.commit()
         # print('newTest', m)
         return m
+
     @classmethod
-    def new_by_list(cls,list):
+    def new_by_list(cls, list):
         print('form in model', list)
         ms = []
-        for form in list:            
+        for form in list:
             length = int(form.get('count'))
             print('form', form)
-            print('数量', length)            
-            for index in range(length):                
+            print('数量', length)
+            for index in range(length):
                 # print('ssss', index)
                 m = cls()
-                for name, value in form.items():                    
-                    setattr(m, name, value)                
+                for name, value in form.items():
+                    setattr(m, name, value)
                 db.session.add(m)
                 ms.append(m)
-                print('m', index,m)
+                print('m', index, m)
 
                 # list.append(m.json())
                 # db.session.add(m)
@@ -86,7 +90,6 @@ class SQLMixin(object):
         for m in ms:
             m = cls.one(id=m.id)
             db.session.delete(m)
-            os.remove(m.src)
         db.session.commit()
         delete_result = cls.query.filter(cls.id.in_(tuple(ids))).all()
         return delete_result
@@ -123,20 +126,30 @@ class SQLMixin(object):
         # print('all sql ', cls, ms)
         ms = cls.query.filter_by().all()
         ms = [m.json() for m in ms]
-        filterMap = ['created_time', 'updated_time', 'purchase_time']
+        filterMap = dict(
+            created_time={
+                'date_type': "%Y-%m-%d %H:%M:%S",
+            },
+            updated_time={
+                'date_type': "%Y-%m-%d %H:%M:%S",
+            },
+            purchase_time={
+                'date_type': "%Y-%m-%d",
+            }
+        )
+        keyMap = filterMap.keys()
         # 格式化日期
-        for m in ms:
+        for m in ms:            
             for i in m:
-                if i in filterMap:
+                if i in keyMap and m[i] is not None:                    
                     # format = '%Y-%m-%d %H:%M:%S'
                     ct = m[i]
-                    # d['created_time'] = '{}-{}-{} {}:{}:{}'.format(ct.year, ct.month, ct.day, ct.hour, ct.minute, ct.second)
-                    m[i] = ct.strftime("%Y-%m-%d %H:%M:%S")
+                    m[i] = ct.strftime(filterMap[i].get('date_type'))
 
         total = db.session.query(func.count(cls.id)).scalar()
         r = dict(
-            list = ms,
-            total = total,
+            list=ms,
+            total=total,
         )
         return r
 

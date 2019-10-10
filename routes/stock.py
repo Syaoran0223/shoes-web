@@ -2,6 +2,7 @@ import os
 import time
 import uuid
 
+from models.batch import Batch
 from utils import log
 from flask import (
     render_template,
@@ -35,13 +36,16 @@ def index():
     return 'api from stock_routes'
 
 
-@main.route('/qeruy', methods=['POST'])
-def queryProdcut():
+@main.route('/queryByBatch', methods=['POST'])
+def queryByBatch():
     # 查询商品大类
-    r = Product.queryAll()
+    form = request.form.to_dict()
+    id = form.get('id')
+    r = Stock.queryAll(id=id)
     r = Res.success(r)
     print('查询所有商品', r)
     return make_response(jsonify(r))
+
 
 @main.route('/delete', methods=['POST'])
 def delete():
@@ -55,6 +59,7 @@ def delete():
     # return make_response(jsonify(r))
     return
 
+
 @main.route('/delete', methods=['POST'])
 def delete_one():
     return
@@ -65,6 +70,7 @@ def delete_one():
     # else:
     #     r = Res.fail()
     # return make_response(jsonify(r))
+
 
 @main.route('/update', methods=['post'])
 def update():
@@ -82,6 +88,9 @@ def update():
 
 @main.route("/uploadFile", methods=['POST', 'GET'])
 def uploadFile():
+    form = request.form.to_dict()
+    id = form.get('id')
+    print('上传接受的参数', form)
     print('接收信息', request.files)
     file = request.files['file']
     print('file', type(file), file)
@@ -101,10 +110,12 @@ def uploadFile():
     s = table.col_values(2)  # 第1列数据
     print('尺码', s)
     table_name = names[0]
+    Batch.update(id=id, upload=1)
+    Stock.delete_by_batch_id(id=id)
     res = formatExcel(table)
     # 根据文件名添加批次
     for r in res:
-        r['batch'] = table_name
+        r['batch'] = form.get('id')
 
     r = Stock.add_by_list(res)
     # print('导入结果', r)
