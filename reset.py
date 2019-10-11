@@ -117,12 +117,12 @@ def generate_fake_date():
     ]
     # 新增批次
     b1 = dict(
-        batch='2019-8-26',
+        purchase_time='2019-8-26',
         name='测试',
         proportion=5
     )
     b2 = dict(
-        batch='2019-9-1',
+        purchase_time='2019-9-1',
         name='批次2',
         proportion=10
     )

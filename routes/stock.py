@@ -43,6 +43,7 @@ def queryProdcut():
     print('查询所有商品', r)
     return make_response(jsonify(r))
 
+
 @main.route('/delete', methods=['POST'])
 def delete():
     form = request.json
@@ -55,6 +56,7 @@ def delete():
     # return make_response(jsonify(r))
     return
 
+
 @main.route('/delete', methods=['POST'])
 def delete_one():
     return
@@ -65,6 +67,7 @@ def delete_one():
     # else:
     #     r = Res.fail()
     # return make_response(jsonify(r))
+
 
 @main.route('/update', methods=['post'])
 def update():
@@ -82,6 +85,8 @@ def update():
 
 @main.route("/uploadFile", methods=['POST', 'GET'])
 def uploadFile():
+    form = request.form.to_dict()
+    print('上传接受的参数', form)
     print('接收信息', request.files)
     file = request.files['file']
     print('file', type(file), file)
@@ -104,7 +109,7 @@ def uploadFile():
     res = formatExcel(table)
     # 根据文件名添加批次
     for r in res:
-        r['batch'] = table_name
+        r['batch'] = form.get('id')
 
     r = Stock.add_by_list(res)
     # print('导入结果', r)

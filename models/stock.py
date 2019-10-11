@@ -20,11 +20,6 @@ class Stock(SQLMixin, db.Model):
 
     @classmethod
     def add_by_list(cls,form):
-        # params:
-        #   status 0
-        #   cost 0
-        #   count 1
-        #   product id
         print('商品参数详情', form)
         p = cls.new_by_list(form)
         print('新增鞋子', p)
@@ -32,6 +27,7 @@ class Stock(SQLMixin, db.Model):
 
     @classmethod
     def queryAll(cls):
+        
         sql = """
         SELECT * FROM product p 
         LEFT JOIN product_attr pa on p.id = pa.product_id 
@@ -43,3 +39,10 @@ class Stock(SQLMixin, db.Model):
         p = cls.query.session.execute(sql)
         list = cls.sql_to_list(p)
         return list
+    
+    @classmethod    
+    def queryByBatch(cls):
+        # 测试接口 返回批次货物 状态
+        sql = """SELECT batch, status, COUNT(id), SUM(cost) FROM stock 
+        GROUP BY batch, status"""
+        return ''

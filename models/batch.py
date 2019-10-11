@@ -11,7 +11,7 @@ class Batch(SQLMixin, db.Model):
     __tablename__ = 'batch'
     name = Column(String(50), comment='名称')
     # 参与人员 比例
-    proportion = Column(Integer, comment='比例')
+    proportion = Column(String(50), comment='比例')
     # 进货时间
     purchase_time = Column(DateTime, comment='进货时间')
 
