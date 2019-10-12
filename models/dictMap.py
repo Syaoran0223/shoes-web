@@ -20,11 +20,13 @@ class DictMap(SQLMixin, db.Model):
     __tablename__ = 'dict_map'
     """
     这是一个字典表 用于查找 key value 以及介绍
-    """
-    username = Column(String(50))
+    """    
     key = Column(String(100))
     value = Column(String(100))
-    note = Column(String(100), comment='备注')
-    table= Column(String(100), comment='对应表')
+    type = Column(String(100), comment="对应表的字段")
+    note = Column(String(100), comment='备注')    
+    status= Column(Integer,comment='是否使用')
+    
+
 
 

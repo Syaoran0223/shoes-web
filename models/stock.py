@@ -21,19 +21,16 @@ class Stock(SQLMixin, db.Model):
     @classmethod
     def add_by_list(cls,form):
         print('商品参数详情', form)
-        p = cls.new_by_list(form)
+        p = cls.new_by_shoes_excel(form)
         print('新增鞋子', p)
         return p
 
     @classmethod
-    def queryAll(cls):
+    def queryAll(cls, id):
         
         sql = """
-        SELECT * FROM product p 
-        LEFT JOIN product_attr pa on p.id = pa.product_id 
-        LEFT JOIN shoes_stock s on s.product_id = p.id  
-        WHERE s.product_id = {}      
-        """.format(1)
+            select * from stock where batch={}      
+        """.format(id)
         print('sql语句', sql)
         sql = text(sql)
         p = cls.query.session.execute(sql)
@@ -46,3 +43,14 @@ class Stock(SQLMixin, db.Model):
         sql = """SELECT batch, status, COUNT(id), SUM(cost) FROM stock 
         GROUP BY batch, status"""
         return ''
+
+    @classmethod
+    def delete_by_batch_id(cls, id):
+        sql = """DELETE FROM stock  WHERE batch={}""".format(id)
+        sql = text(sql)
+        print('删除语句', sql)
+        p = cls.query.session.execute(sql)
+
+        # list = cls.sql_to_list(p)
+        print('删除返回什么', p)
+        return True

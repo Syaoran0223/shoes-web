@@ -14,7 +14,10 @@ class Batch(SQLMixin, db.Model):
     proportion = Column(String(50), comment='比例')
     # 进货时间
     purchase_time = Column(DateTime, comment='进货时间')
-
+    upload = Column(Integer, default=0, comment='上传状态')
+    note = Column(String(100), default="", comment="备注")
+    excel_name = Column(String(100), comment="excel文件名")
+    
 
     @classmethod
     def add_by_count(cls,form):

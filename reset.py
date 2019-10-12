@@ -15,15 +15,17 @@ from models.batch import Batch
 from models.dictMap import DictMap
 
 print('数据类型', secret.db_port)
+
+
 def reset_database():
     # url = 'mysql+pymysql://root:{}@localhost:{}/?charset=utf8mb4'.format(
     # # url='mysql+pymysql://root:{}@mysql/?charset=utf8mb4'.format(
     #     database_ip, database_password, database_port)
     url = 'mysql+pymysql://{username}:{password}@{db_addr}:{db_port}/'.format(username=secret.db_username,
-            password=secret.db_password,
-            db_addr=secret.db_addr,
-            # db_name=secret.db_name,
-            db_port=secret.db_port)
+                                                                              password=secret.db_password,
+                                                                              db_addr=secret.db_addr,
+                                                                              # db_name=secret.db_name,
+                                                                              db_port=secret.db_port)
     print('url', url)
     e = create_engine(url, echo=True)
     with e.connect() as c:
@@ -82,39 +84,67 @@ def generate_fake_date():
     )
     User.login(u)
     # 增加字典表
+   
     d1 = [
         {
-            'key': 'identity',
-            'value': 0,
-            'note': '管理员',
-            'table': 'user',
-         },
-        {
-            'key': 'identity',
-            'value': 1,
-            'note': '普通用户',
-            'table': 'user'
+            'key': 0,
+            'value': '管理员',
+            'status': 0,
+            'type': 'USER_TYPE',
+            'note': '用户权限',
         },
         {
-            'key': 'status',
-            'value': 0,
-            'note': '未出售',
-            'table': 'stock'
+            'key': 1,
+            'value': '普通用户',
+            'status': 0,
+            'type': 'USER_TYPE',
+            'note': '用户权限',
         },
         {
-            'key': 'identity',
-            'value': 1,
-            'note': '已出售',
-            'table': 'stock'
+            'key': 0,
+            'value': '出售中',
+            'status': 0,
+            'type': 'STOCK_STATUS',
+            'note': '出售状态',
         },
         {
-            'key': 'identity',
-            'value': 1,
-            'note': '瑕疵',
-            'table': 'stock'
+            'key': 1,
+            'value': '已出售',
+            'status': 0,
+            'type': 'STOCK_STATUS',
+            'note': '出售状态',
+        },
+        {
+            'key': 2,
+            'value': '寄售',
+            'status': 0,
+            'type': 'STOCK_STATUS',
+            'note': '出售状态',
+        },
+        {
+            'key': 3,
+            'value': '退回中',
+            'status': 0,
+            'type': 'STOCK_STATUS',
+            'note': '出售状态',
+        },
+        {
+            'key': 0,
+            'value': '未上传',
+            'status': 0,
+            'type': 'BATCH_UPLOAD',
+            'note': '批次表格导入状态',
+        },
+        {
+            'key': 1,
+            'value': '已上传',
+            'status': 0,
+            'type': 'BATCH_UPLOAD',
+            'note': '批次表格导入状态',
         },
 
     ]
+    DictMap.new_by_list_dict(d1)
     # 新增批次
     b1 = dict(
         purchase_time='2019-8-26',
@@ -147,9 +177,6 @@ def generate_fake_date():
     # p2 = ProductAttr.queryAll()
     # print('p2', p2)
     # product1_attr1()
-
-
-
 
 
 if __name__ == '__main__':
