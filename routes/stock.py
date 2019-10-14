@@ -156,8 +156,9 @@ def formatExcel(table):
 def formatHeadToSql(head):
     headMap = dict(
         货号='code',
-        备注='note',
+        名称='name',
         状态='status',
+        备注='note',
         # 成本='cost',
         出价='cost',
         售价='price',
