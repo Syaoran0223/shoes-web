@@ -1,7 +1,11 @@
 from functools import wraps
 
-from flask import session, request, abort,make_response
+from flask import session, request, abort, make_response, jsonify
 
+from models.res import Res
+from models.user import User
+from utils import log
+from models.session import Session
 
 def cors(func):
     @wraps(func)
@@ -43,3 +47,45 @@ def formatParams(func):
         # print('**kwargs', kwargs)
         return func(*args, **kwargs)
     return wrapper
+
+
+def current_user():
+    log('requset.cookies', request.cookies)
+    log('requset.cookies user_id', request.cookies.get('session'))
+    if 'session_id' in request.cookies:
+        # session_id = request.cookies['session_id']
+        # s = Session.find_by(session_id=session_id)
+        session_id = request.cookies['user_id']
+        log('sessionid', session_id)
+        s =  Session.one(session_id=session_id)
+
+        log('current_user session', s)
+        if s is None or s.expired():
+            log('判断当前用户', s)
+            return User.guest()
+        else:
+            user_id = s.user_id
+            u = User.find_by(id=user_id)
+            return u
+    else:
+        log('没进去')
+        return User.guest()
+
+def login_required(route_function):
+    """
+    这个函数看起来非常绕，所以你不懂也没关系
+    就直接拿来复制粘贴就好了
+    """
+    @wraps(route_function)
+    def f():
+        log('是否进入登录判断')
+        u = current_user()
+        log('判断用户', u)
+        if u.is_guest():
+            log('游客用户')
+            r = Res.fail(u.json())
+            return make_response(jsonify(r))
+        else:
+            log('登录用户', route_function)
+            return route_function()
+    return f

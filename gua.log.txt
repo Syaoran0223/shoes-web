@@ -242,3 +242,324 @@
 22:12:00 1111
 22:13:00 1111
 22:16:58 1111
+00:17:26 是否进入登录判断
+00:17:26 没进去
+00:24:25 是否进入登录判断
+00:24:25 没进去
+00:27:23 是否进入登录判断
+00:27:23 没进去
+00:28:02 是否进入登录判断
+00:28:02 没进去
+00:29:50 是否进入登录判断
+00:29:50 没进去
+00:30:28 是否进入登录判断
+00:30:28 没进去
+00:30:28 判断用户 < User
+id: (2)
+created_time: (2019-10-14 16:30:29)
+updated_time: (2019-10-14 16:30:29)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (test)
+unionid: (None)
+session_key: (None)
+identity: (1)
+ >
+
+00:30:28 游客用户
+00:31:43 是否进入登录判断
+00:31:43 没进去
+00:31:43 判断用户 < User
+id: (3)
+created_time: (2019-10-14 16:31:44)
+updated_time: (2019-10-14 16:31:44)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (test)
+unionid: (None)
+session_key: (None)
+identity: (1)
+ >
+
+00:31:43 游客用户
+00:32:22 是否进入登录判断
+00:32:22 没进去
+00:32:22 判断用户 < User
+id: (4)
+created_time: (2019-10-14 16:32:23)
+updated_time: (2019-10-14 16:32:23)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (test)
+unionid: (None)
+session_key: (None)
+identity: (1)
+ >
+
+00:32:22 游客用户
+00:34:18 是否进入登录判断
+00:34:18 没进去
+00:34:18 判断用户 < User
+id: (5)
+created_time: (2019-10-14 16:34:19)
+updated_time: (2019-10-14 16:34:19)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (test)
+unionid: (None)
+session_key: (None)
+identity: (1)
+ >
+
+00:34:18 游客用户
+00:36:06 是否进入登录判断
+00:36:06 没进去
+00:36:06 判断用户 < User
+id: (6)
+created_time: (2019-10-14 16:36:07)
+updated_time: (2019-10-14 16:36:07)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (test)
+unionid: (None)
+session_key: (None)
+identity: (1)
+ >
+
+00:36:06 游客用户
+00:56:36 是否进入登录判断
+00:56:36 没进去
+00:56:36 判断用户 < User
+id: (7)
+created_time: (2019-10-14 16:56:37)
+updated_time: (2019-10-14 16:56:37)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (test)
+unionid: (None)
+session_key: (None)
+identity: (1)
+ >
+
+00:56:36 游客用户
+01:01:31 是否进入登录判断
+01:01:31 没进去
+01:01:32 判断用户 < User
+id: (8)
+created_time: (2019-10-14 17:01:32)
+updated_time: (2019-10-14 17:01:32)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (test)
+unionid: (None)
+session_key: (None)
+identity: (1)
+ >
+
+01:01:32 游客用户
+01:07:18 是否进入登录判断
+01:07:18 没进去
+01:07:18 判断用户 < User
+id: (2)
+created_time: (2019-10-14 17:07:18)
+updated_time: (2019-10-14 17:07:18)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (test)
+unionid: (None)
+session_key: (None)
+identity: (1)
+ >
+
+01:07:18 游客用户
+01:08:29 是否进入登录判断
+01:08:29 requset.cookies {}
+01:08:29 没进去
+01:08:29 判断用户 < User
+id: (3)
+created_time: (2019-10-14 17:08:29)
+updated_time: (2019-10-14 17:08:29)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (test)
+unionid: (None)
+session_key: (None)
+identity: (1)
+ >
+
+01:08:29 游客用户
+01:09:05 是否进入登录判断
+01:09:05 requset.cookies {'session': 'eyJfcGVybWFuZW50Ijp0cnVlLCJ1c2VyX2lkIjoib0FDWVgwZDhxdExQQVo2TXR4MHNnQlkzQXRHdyJ9.EIY9Lw.B4DUVjW4AA30fiUeqwFvZSS1fRo'}
+01:09:05 没进去
+01:09:05 判断用户 < User
+id: (4)
+created_time: (2019-10-14 17:09:06)
+updated_time: (2019-10-14 17:09:06)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (test)
+unionid: (None)
+session_key: (None)
+identity: (1)
+ >
+
+01:09:05 游客用户
+01:10:59 是否进入登录判断
+01:10:59 requset.cookies {'session': 'eyJfcGVybWFuZW50Ijp0cnVlLCJ1c2VyX2lkIjoib0FDWVgwZDhxdExQQVo2TXR4MHNnQlkzQXRHdyJ9.EIY9gQ.FDIV80kA7rTRWE7Fffutl1sY_X4'}
+01:10:59 没进去
+01:10:59 判断用户 < User
+id: (5)
+created_time: (2019-10-14 17:10:59)
+updated_time: (2019-10-14 17:10:59)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (test)
+unionid: (None)
+session_key: (None)
+identity: (1)
+ >
+
+01:10:59 游客用户
+01:17:57 是否进入登录判断
+01:17:57 requset.cookies {'session': 'eyJfcGVybWFuZW50Ijp0cnVlLCJ1c2VyX2lkIjoib0FDWVgwZDhxdExQQVo2TXR4MHNnQlkzQXRHdyJ9.EIY_KQ.gSOs-ltg3wZl3FNTFYINZQLoPgg'}
+01:17:57 没进去
+01:17:57 判断用户 < User
+id: (6)
+created_time: (2019-10-14 17:17:57)
+updated_time: (2019-10-14 17:17:57)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (test)
+unionid: (None)
+session_key: (None)
+identity: (1)
+ >
+
+01:17:57 游客用户
+01:18:42 是否进入登录判断
+01:18:42 requset.cookies {'session': 'eyJfcGVybWFuZW50Ijp0cnVlLCJ1c2VyX2lkIjoib0FDWVgwZDhxdExQQVo2TXR4MHNnQlkzQXRHdyJ9.EIY_bg.1NQyaEyALOjCXztIAbgoHNCe8m0'}
+01:18:42 requset.cookies user_id None
+01:18:42 没进去
+01:18:42 判断用户 < User
+id: (7)
+created_time: (2019-10-14 17:18:42)
+updated_time: (2019-10-14 17:18:42)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (test)
+unionid: (None)
+session_key: (None)
+identity: (1)
+ >
+
+01:18:42 游客用户
+01:30:12 生成的 session None
+01:30:41 是否进入登录判断
+01:30:41 requset.cookies {'session': 'eyJfcGVybWFuZW50Ijp0cnVlLCJ1c2VyX2lkIjoib0FDWVgwZDhxdExQQVo2TXR4MHNnQlkzQXRHdyJ9.EIZCPg.1vpqwfz5TxRYUV6S0dAv0l6-gTk'}
+01:30:41 requset.cookies user_id None
+01:30:41 没进去
+01:30:42 判断用户 < User
+id: (2)
+created_time: (2019-10-14 17:30:42)
+updated_time: (2019-10-14 17:30:42)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (test)
+unionid: (None)
+session_key: (None)
+identity: (1)
+ >
+
+01:30:42 游客用户
+01:32:17 生成的 session None
+01:32:30 生成的 session None
+01:34:58 是否进入登录判断
+01:34:58 requset.cookies {'session': 'eyJfcGVybWFuZW50Ijp0cnVlLCJ1c2VyX2lkIjoib0FDWVgwZDhxdExQQVo2TXR4MHNnQlkzQXRHdyJ9.EIZCrg.i3KdqtYXhJXPTpyO-p4ir0rUhgI'}
+01:34:58 requset.cookies user_id None
+01:34:58 没进去
+01:34:58 判断用户 < User
+id: (3)
+created_time: (2019-10-14 17:34:58)
+updated_time: (2019-10-14 17:34:58)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (test)
+unionid: (None)
+session_key: (None)
+identity: (1)
+ >
+
+01:34:58 游客用户
+01:35:31 生成的 session None
+01:35:54 是否进入登录判断
+01:35:54 requset.cookies {'session': 'eyJfcGVybWFuZW50Ijp0cnVlLCJ1c2VyX2lkIjoib0FDWVgwZDhxdExQQVo2TXR4MHNnQlkzQXRHdyJ9.EIZDYw.5cLm9F-UFlyFqvO1w7_BK8H5OE4'}
+01:35:54 requset.cookies user_id eyJfcGVybWFuZW50Ijp0cnVlLCJ1c2VyX2lkIjoib0FDWVgwZDhxdExQQVo2TXR4MHNnQlkzQXRHdyJ9.EIZDYw.5cLm9F-UFlyFqvO1w7_BK8H5OE4
+01:35:54 没进去
+01:35:54 判断用户 < User
+id: (4)
+created_time: (2019-10-14 17:35:55)
+updated_time: (2019-10-14 17:35:55)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (test)
+unionid: (None)
+session_key: (None)
+identity: (1)
+ >
+
+01:35:54 游客用户
+01:36:13 生成的 session None
+01:36:14 是否进入登录判断
+01:36:14 requset.cookies {'session': 'eyJfcGVybWFuZW50Ijp0cnVlLCJ1c2VyX2lkIjoib0FDWVgwZDhxdExQQVo2TXR4MHNnQlkzQXRHdyJ9.EIZDjQ.MWKHSzK7d8YNrf5G1_9W9hlv1QY'}
+01:38:55 生成的 session None
+01:38:58 是否进入登录判断
+01:38:58 requset.cookies {'session': 'eyJfcGVybWFuZW50Ijp0cnVlLCJ1c2VyX2lkIjoib0FDWVgwZDhxdExQQVo2TXR4MHNnQlkzQXRHdyJ9.EIZELw.-tIf3f96GnA0A11LbN9ZeVgo4B0'}
+01:38:58 requset.cookies user_id eyJfcGVybWFuZW50Ijp0cnVlLCJ1c2VyX2lkIjoib0FDWVgwZDhxdExQQVo2TXR4MHNnQlkzQXRHdyJ9.EIZELw.-tIf3f96GnA0A11LbN9ZeVgo4B0
+01:38:58 没进去
+01:38:59 判断用户 < User
+id: (5)
+created_time: (2019-10-14 17:38:59)
+updated_time: (2019-10-14 17:38:59)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (test)
+unionid: (None)
+session_key: (None)
+identity: (1)
+ >
+
+01:38:59 游客用户

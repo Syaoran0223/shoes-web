@@ -16,7 +16,6 @@ from flask import (
     send_from_directory,
     jsonify
 )
-from models.res import Res
 from routes import cors, hasToken, formatParams
 from models.batch import Batch
 from models.res import Res

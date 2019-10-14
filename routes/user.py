@@ -3,6 +3,9 @@ import uuid
 from config import base
 import requests
 
+from models.session import Session
+from models.user_role import UserRole
+
 from utils import log
 from flask import (
     render_template,
@@ -36,14 +39,33 @@ def login():
     form = request.form.to_dict()
     wxloginUrl = """https://api.weixin.qq.com/sns/jscode2session?appid={appid}&secret={appSecret}&js_code={code}&grant_type=authorization_code""".format(appid=base.appid, appSecret=base.appSecret, code=form.get('code'))
     res = requests.post(wxloginUrl).json()
-    r = User.login(res)
-
+    u = User.login(res)
+    print('u', u)
     filterMap = ['openid', 'id','updated_time']
+    if u is not None:
+        token = u.get('token')
+        print('token', token)
+        sform = dict(
+            session_id=u.get('openid'),
+            user_id= u.get('id')
+        )
+        s = Session.add(sform)
+        log('生成的 session', s)
+        session['user_id'] = u.get('openid')
+        print('session', session)
+        print('login session', session.get('user_id'))
+        # 设置 cookie 有效期为 永久
+        session.permanent = True
+        token = dict(
+            token=token
+        )
     result = dict()
-    for k in r.keys():
+    for k in u.keys():
         if  k in filterMap:
-            result[k] = r[k]
+            result[k] = u[k]
     resp = make_response(jsonify(result))
+    resp.headers["X-Token"] = [token.get('token')]
+    print('resp in login', resp.headers)
     return resp
 
 
