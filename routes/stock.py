@@ -47,6 +47,13 @@ def queryByBatch():
     return make_response(jsonify(r))
 
 
+@main.route('/queryByCondition', methods=['POST'])
+def queryByCondition():
+    form = request.form.to_dict()
+    r = Stock.all(**form)
+    return make_response(jsonify(r))
+
+
 @main.route('/delete', methods=['POST'])
 def delete():
     form = request.json
@@ -72,15 +79,14 @@ def delete_one():
     # return make_response(jsonify(r))
 
 
-@main.route('/update', methods=['post'])
+@main.route('/updateStock', methods=['post'])
 def update():
-    # form = request.json
-    # print('form', form)
-    # data = Img.update(id=form['id'], show=str(form['enable']))
-    # print('data', data)
-    # r = Res.success(data)
-    # return make_response(jsonify(r))
-    return
+    form = request.form.to_dict()
+    id = form.get('id')    
+    data = Stock.update(**form)
+    print('data', data)
+    r = Res.success(data)
+    return make_response(jsonify(r))
 
 
 # 测试上传excel

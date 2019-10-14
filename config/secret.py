@@ -11,4 +11,4 @@ db_port = 3306
 db_username = 'root'
 db_password = '123456'
 db_name = 'shoes'
-db_addr = '222.79.48.98'
+db_addr = '110.80.155.12'

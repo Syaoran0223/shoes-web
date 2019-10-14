@@ -139,7 +139,7 @@ class SQLMixin(object):
         #     print('没有页数')
         #     ms = cls.query.filter_by().all()
         # print('all sql ', cls, ms)
-        ms = cls.query.filter_by().all()
+        ms = cls.query.filter_by(**kwargs).all()
         ms = [m.json() for m in ms]
         filterMap = dict(
             created_time={
@@ -169,7 +169,7 @@ class SQLMixin(object):
         return r
 
     @classmethod
-    def queryImageByCondition(cls, **kwargs):
+    def queryByCondition(cls, **kwargs):
         print('base_model all kwargs', kwargs)
         # page_size = int(kwargs['page_size']) or None
         page_size = hasattr(kwargs, 'page_size')
