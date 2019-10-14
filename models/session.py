@@ -49,9 +49,9 @@ class Session(SQLMixin, db.Model):
     #     self.expired_time = form.get('expired_time', time.time() + 3600)
 
     def expired(self):
-        now = time.time()
+        now = datetime.datetime.utcnow
         print('self', self)
-        result = float(self.expired_time) < now
+        result =self.expired_time < now
         log('expired', result, self.expired_time, now)
         return result
 

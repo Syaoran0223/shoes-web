@@ -50,15 +50,11 @@ def formatParams(func):
 
 
 def current_user():
-    log('requset.cookies', request.cookies)
-    log('requset.cookies user_id', request.cookies.get('session'))
-    if 'session_id' in request.cookies:
-        # session_id = request.cookies['session_id']
-        # s = Session.find_by(session_id=session_id)
-        session_id = request.cookies['user_id']
+    log('真正的sesson', session)
+    if 'user_id' in session:
+        session_id = session.get('user_id')
         log('sessionid', session_id)
-        s =  Session.one(session_id=session_id)
-
+        s = Session.one(session_id=session_id)
         log('current_user session', s)
         if s is None or s.expired():
             log('判断当前用户', s)
