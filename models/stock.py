@@ -21,7 +21,7 @@ class Stock(SQLMixin, db.Model):
     @classmethod
     def add_by_list(cls,form):
         print('商品参数详情', form)
-        p = cls.new_by_list(form)
+        p = cls.new_by_shoes_excel(form)
         print('新增鞋子', p)
         return p
 

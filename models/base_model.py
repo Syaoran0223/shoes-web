@@ -46,7 +46,22 @@ class SQLMixin(object):
         return m
 
     @classmethod
-    def new_by_list(cls, list):
+    def new_by_list_dict(cls, list_dict):
+        # list_dict   ->  [{},{}]
+        ms = []
+        for ld in list_dict:
+            m = cls()
+            for name, value in ld.items():
+                setattr(m, name, value)
+            ms.append(m)
+            db.session.add(m)
+        db.session.commit()    
+        ms = [m.json() for m in ms]
+        return ms
+
+    @classmethod
+    def new_by_shoes_excel(cls, list):
+        # list -> [{*:*, count: 1}] 根据列表中count数量 循环
         print('form in model', list)
         ms = []
         for form in list:
@@ -124,7 +139,7 @@ class SQLMixin(object):
         #     print('没有页数')
         #     ms = cls.query.filter_by().all()
         # print('all sql ', cls, ms)
-        ms = cls.query.filter_by().all()
+        ms = cls.query.filter_by(**kwargs).all()
         ms = [m.json() for m in ms]
         filterMap = dict(
             created_time={
@@ -139,9 +154,9 @@ class SQLMixin(object):
         )
         keyMap = filterMap.keys()
         # 格式化日期
-        for m in ms:            
+        for m in ms:
             for i in m:
-                if i in keyMap and m[i] is not None:                    
+                if i in keyMap and m[i] is not None:
                     # format = '%Y-%m-%d %H:%M:%S'
                     ct = m[i]
                     m[i] = ct.strftime(filterMap[i].get('date_type'))
@@ -154,7 +169,7 @@ class SQLMixin(object):
         return r
 
     @classmethod
-    def queryImageByCondition(cls, **kwargs):
+    def queryByCondition(cls, **kwargs):
         print('base_model all kwargs', kwargs)
         # page_size = int(kwargs['page_size']) or None
         page_size = hasattr(kwargs, 'page_size')

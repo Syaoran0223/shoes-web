@@ -46,6 +46,11 @@ def queryByBatch():
     print('查询所有商品', r)
     return make_response(jsonify(r))
 
+@main.route('/queryByCondition', methods=['POST'])
+def queryByCondition():
+    form = request.form.to_dict()
+    r = Stock.all(**form)
+    return make_response(jsonify(r))
 
 @main.route('/delete', methods=['POST'])
 def delete():
@@ -110,7 +115,7 @@ def uploadFile():
     s = table.col_values(2)  # 第1列数据
     print('尺码', s)
     table_name = names[0]
-    Batch.update(id=id, upload=1)
+    Batch.update(id=id, upload=1, excel_name=form.get('excel_name'))
     Stock.delete_by_batch_id(id=id)
     res = formatExcel(table)
     # 根据文件名添加批次
