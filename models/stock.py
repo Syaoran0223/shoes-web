@@ -6,10 +6,11 @@ from models.base_model import SQLMixin, db
 
 class Stock(SQLMixin, db.Model):
     __tablename__ = 'stock'
-    product_id = Column(Integer, comment='产品id')
+    product_id = Column(Integer, comment='产品id', default=99999)
     batch = Column(String(50),comment='批次')
     code = Column(String(50), comment='货号')
-    note= Column(String(100), comment='备注')
+    name = Column(String(100), comment='名称')
+    note = Column(String(100), comment='备注')
     size = Column(Float, comment='尺码')
     status = Column(Integer, comment='0：待发货，1：发货，3瑕疵', default=0)
     cost = Column(Float, comment='进价')
