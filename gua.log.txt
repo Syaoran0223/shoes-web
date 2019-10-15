@@ -1019,3 +1019,103 @@ expired_time: (2019-10-15 06:20:50)
 14:21:00 真正的sesson <SecureCookieSession {'_permanent': True, 'user_id': 'oACYX0d8qtLPAZ6Mtx0sgBY3AtGw'}>
 14:21:00 sessionid oACYX0d8qtLPAZ6Mtx0sgBY3AtGw
 14:21:00 current_user session None
+22:30:12 生成的 session < Session
+id: (1)
+created_time: (2019-10-15 06:20:50)
+updated_time: (2019-10-15 06:20:50)
+session_id: (None)
+user_id: (None)
+expired_time: (2019-10-15 06:20:50)
+ >
+
+22:31:54 是否进入登录判断
+22:31:54 真正的sesson <SecureCookieSession {'_permanent': True, 'user_id': 'oACYX0d8qtLPAZ6Mtx0sgBY3AtGw'}>
+22:31:54 sessionid oACYX0d8qtLPAZ6Mtx0sgBY3AtGw
+22:31:54 current_user session None
+22:33:33 生成的 session < Session
+id: (1)
+created_time: (2019-10-15 06:20:50)
+updated_time: (2019-10-15 06:20:50)
+session_id: (None)
+user_id: (None)
+expired_time: (2019-10-15 06:20:50)
+ >
+
+22:33:36 是否进入登录判断
+22:33:36 真正的sesson <SecureCookieSession {'_permanent': True, 'user_id': 'oACYX0d8qtLPAZ6Mtx0sgBY3AtGw'}>
+22:33:36 session找的用户 None
+22:33:36 判断当前用户 None
+22:33:36 判断用户 < User
+id: (2)
+created_time: (2019-10-15 14:33:36)
+updated_time: (2019-10-15 14:33:36)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (test)
+unionid: (None)
+session_key: (None)
+identity: (1)
+ >
+
+22:33:36 游客用户
+22:34:06 生成的 session < Session
+id: (1)
+created_time: (2019-10-15 06:20:50)
+updated_time: (2019-10-15 06:20:50)
+session_id: (None)
+user_id: (None)
+expired_time: (2019-10-15 06:20:50)
+ >
+
+22:34:09 是否进入登录判断
+22:34:09 真正的sesson <SecureCookieSession {'_permanent': True, 'user_id': 'oACYX0d8qtLPAZ6Mtx0sgBY3AtGw'}>
+22:34:09 session找的用户 < User
+id: (1)
+created_time: (2019-10-15 06:19:59)
+updated_time: (2019-10-15 06:19:59)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (oACYX0d8qtLPAZ6Mtx0sgBY3AtGw)
+unionid: (None)
+session_key: (None)
+identity: (0)
+ >
+
+22:39:26 生成的 session < Session
+id: (1)
+created_time: (2019-10-15 14:39:26)
+updated_time: (2019-10-15 14:39:26)
+session_id: (None)
+user_id: (None)
+expired_time: (2019-10-15 14:39:26)
+ >
+
+22:56:34 生成的 session < Session
+id: (1)
+created_time: (2019-10-15 14:56:34)
+updated_time: (2019-10-15 14:56:34)
+session_id: (None)
+user_id: (None)
+expired_time: (2019-10-15 14:56:34)
+ >
+
+22:56:44 是否进入登录判断
+22:56:44 真正的sesson <SecureCookieSession {'_permanent': True, 'user_id': 'oACYX0d8qtLPAZ6Mtx0sgBY3AtGw'}>
+22:56:44 session找的用户 < User
+id: (1)
+created_time: (2019-10-15 14:53:40)
+updated_time: (2019-10-15 14:53:40)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (oACYX0d8qtLPAZ6Mtx0sgBY3AtGw)
+unionid: (None)
+session_key: (None)
+identity: (0)
+ >
+

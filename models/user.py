@@ -1,5 +1,5 @@
 import hashlib
-
+from models.user_role import UserRole, GuaEncoder
 from sqlalchemy import Column, String, Text, Integer
 from config.secret import secret_key
 from models.base_model import SQLMixin, db
@@ -47,6 +47,7 @@ class User(SQLMixin, db.Model):
             print('查询到用户', r)
         # 返回部分字段
         r = r.json()
+
         return r
 
     @staticmethod

@@ -1,6 +1,8 @@
 # 基本配置
+from datetime import timedelta
+
 from config.base import host, port
-from flask import Flask
+from flask import Flask, session
 # 跨域
 from flask_cors import CORS
 from models.base_model import db
@@ -42,6 +44,8 @@ def configured_app():
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
     register_routes(app)
+    # 设置session过期时间
+    app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=7)
 
     # flask admin
     admin = Admin(app, name='shoes', template_mode='bootstrap3')

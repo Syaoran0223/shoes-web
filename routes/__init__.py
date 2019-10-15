@@ -53,10 +53,13 @@ def current_user():
     log('真正的sesson', session)
     if 'user_id' in session:
         session_id = session.get('user_id')
-        log('sessionid', session_id)
+        print('这里的 session', session_id)
+        # s = User.one(openid=session_id)
+        # log('session找的用户', s)
+        # log('sessionid', session_id)
         s = Session.one(session_id=session_id)
-        log('current_user session', s)
-        log('s.expired', s.expired())
+        # log('current_user session', s)
+        # log('s.expired', s.expired())
         if s is None or s.expired():
             log('判断当前用户', s)
             return User.guest()
