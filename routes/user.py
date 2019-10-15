@@ -49,6 +49,7 @@ def login():
             session_id=u.get('openid'),
             user_id= u.get('id')
         )
+        print('ssssform', sform)
         s = Session.add(sform)
         log('生成的 session', s)
         session['user_id'] = u.get('openid')

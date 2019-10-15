@@ -610,3 +610,412 @@ user_id: (1)
 expired_time: (2019-10-14 17:30:12)
  >
 
+10:23:04 是否进入登录判断
+10:23:04 真正的sesson <SecureCookieSession {}>
+10:23:04 没进去
+10:23:05 判断用户 < User
+id: (7)
+created_time: (2019-10-15 02:23:05)
+updated_time: (2019-10-15 02:23:05)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (test)
+unionid: (None)
+session_key: (None)
+identity: (1)
+ >
+
+10:23:06 游客用户
+10:23:35 生成的 session None
+10:23:48 是否进入登录判断
+10:23:48 真正的sesson <SecureCookieSession {'_permanent': True, 'user_id': 'oACYX0d8qtLPAZ6Mtx0sgBY3AtGw'}>
+10:23:48 sessionid oACYX0d8qtLPAZ6Mtx0sgBY3AtGw
+10:23:48 current_user session < Session
+id: (1)
+created_time: (2019-10-14 17:30:12)
+updated_time: (2019-10-14 17:30:12)
+session_id: (oACYX0d8qtLPAZ6Mtx0sgBY3AtGw)
+user_id: (1)
+expired_time: (2019-10-14 17:30:12)
+ >
+
+10:52:13 生成的 session None
+10:52:19 是否进入登录判断
+10:52:19 真正的sesson <SecureCookieSession {'_permanent': True, 'user_id': 'oACYX0d8qtLPAZ6Mtx0sgBY3AtGw'}>
+10:52:19 sessionid oACYX0d8qtLPAZ6Mtx0sgBY3AtGw
+10:52:19 current_user session < Session
+id: (1)
+created_time: (2019-10-14 17:30:12)
+updated_time: (2019-10-14 17:30:12)
+session_id: (oACYX0d8qtLPAZ6Mtx0sgBY3AtGw)
+user_id: (1)
+expired_time: (2019-10-14 17:30:12)
+ >
+
+10:54:12 是否进入登录判断
+10:54:12 真正的sesson <SecureCookieSession {'_permanent': True, 'user_id': 'oACYX0d8qtLPAZ6Mtx0sgBY3AtGw'}>
+10:54:12 sessionid oACYX0d8qtLPAZ6Mtx0sgBY3AtGw
+10:54:12 current_user session < Session
+id: (1)
+created_time: (2019-10-14 17:30:12)
+updated_time: (2019-10-14 17:30:12)
+session_id: (oACYX0d8qtLPAZ6Mtx0sgBY3AtGw)
+user_id: (1)
+expired_time: (2019-10-14 17:30:12)
+ >
+
+11:22:36 是否进入登录判断
+11:22:36 真正的sesson <SecureCookieSession {'_permanent': True, 'user_id': 'oACYX0d8qtLPAZ6Mtx0sgBY3AtGw'}>
+11:22:36 sessionid oACYX0d8qtLPAZ6Mtx0sgBY3AtGw
+11:22:36 current_user session < Session
+id: (1)
+created_time: (2019-10-14 17:30:12)
+updated_time: (2019-10-14 17:30:12)
+session_id: (oACYX0d8qtLPAZ6Mtx0sgBY3AtGw)
+user_id: (1)
+expired_time: (2019-10-14 17:30:12)
+ >
+
+11:22:37 生成的 session None
+11:22:55 生成的 session None
+11:23:00 是否进入登录判断
+11:23:00 真正的sesson <SecureCookieSession {'_permanent': True, 'user_id': 'oACYX0d8qtLPAZ6Mtx0sgBY3AtGw'}>
+11:23:00 sessionid oACYX0d8qtLPAZ6Mtx0sgBY3AtGw
+11:23:00 current_user session < Session
+id: (1)
+created_time: (2019-10-14 17:30:12)
+updated_time: (2019-10-14 17:30:12)
+session_id: (oACYX0d8qtLPAZ6Mtx0sgBY3AtGw)
+user_id: (1)
+expired_time: (2019-10-14 17:30:12)
+ >
+
+11:23:51 生成的 session None
+11:23:54 是否进入登录判断
+11:23:54 真正的sesson <SecureCookieSession {'_permanent': True, 'user_id': 'oACYX0d8qtLPAZ6Mtx0sgBY3AtGw'}>
+11:23:54 sessionid oACYX0d8qtLPAZ6Mtx0sgBY3AtGw
+11:23:54 current_user session < Session
+id: (1)
+created_time: (2019-10-14 17:30:12)
+updated_time: (2019-10-14 17:30:12)
+session_id: (oACYX0d8qtLPAZ6Mtx0sgBY3AtGw)
+user_id: (1)
+expired_time: (2019-10-14 17:30:12)
+ >
+
+11:24:38 生成的 session None
+11:24:42 是否进入登录判断
+11:24:42 真正的sesson <SecureCookieSession {'_permanent': True, 'user_id': 'oACYX0d8qtLPAZ6Mtx0sgBY3AtGw'}>
+11:24:42 sessionid oACYX0d8qtLPAZ6Mtx0sgBY3AtGw
+11:24:42 current_user session < Session
+id: (1)
+created_time: (2019-10-14 17:30:12)
+updated_time: (2019-10-14 17:30:12)
+session_id: (oACYX0d8qtLPAZ6Mtx0sgBY3AtGw)
+user_id: (1)
+expired_time: (2019-10-14 17:30:12)
+ >
+
+11:26:46 生成的 session None
+11:26:50 是否进入登录判断
+11:26:50 真正的sesson <SecureCookieSession {'_permanent': True, 'user_id': 'oACYX0d8qtLPAZ6Mtx0sgBY3AtGw'}>
+11:26:50 sessionid oACYX0d8qtLPAZ6Mtx0sgBY3AtGw
+11:26:50 current_user session < Session
+id: (1)
+created_time: (2019-10-14 17:30:12)
+updated_time: (2019-10-14 17:30:12)
+session_id: (oACYX0d8qtLPAZ6Mtx0sgBY3AtGw)
+user_id: (1)
+expired_time: (2019-10-14 17:30:12)
+ >
+
+11:26:50 判断当前用户 < Session
+id: (1)
+created_time: (2019-10-14 17:30:12)
+updated_time: (2019-10-14 17:30:12)
+session_id: (oACYX0d8qtLPAZ6Mtx0sgBY3AtGw)
+user_id: (1)
+expired_time: (2019-10-14 17:30:12)
+ >
+
+11:26:50 判断用户 < User
+id: (8)
+created_time: (2019-10-15 03:26:50)
+updated_time: (2019-10-15 03:26:50)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (test)
+unionid: (None)
+session_key: (None)
+identity: (1)
+ >
+
+11:26:50 游客用户
+11:30:32 生成的 session None
+11:30:34 是否进入登录判断
+11:30:34 真正的sesson <SecureCookieSession {'_permanent': True, 'user_id': 'oACYX0d8qtLPAZ6Mtx0sgBY3AtGw'}>
+11:30:34 sessionid oACYX0d8qtLPAZ6Mtx0sgBY3AtGw
+11:30:34 current_user session < Session
+id: (1)
+created_time: (2019-10-14 17:30:12)
+updated_time: (2019-10-14 17:30:12)
+session_id: (oACYX0d8qtLPAZ6Mtx0sgBY3AtGw)
+user_id: (1)
+expired_time: (2019-10-14 17:30:12)
+ >
+
+11:50:47 生成的 session None
+11:50:52 是否进入登录判断
+11:50:52 真正的sesson <SecureCookieSession {'_permanent': True, 'user_id': 'oACYX0d8qtLPAZ6Mtx0sgBY3AtGw'}>
+11:50:52 sessionid oACYX0d8qtLPAZ6Mtx0sgBY3AtGw
+11:50:53 current_user session < Session
+id: (1)
+created_time: (2019-10-14 17:30:12)
+updated_time: (2019-10-14 17:30:12)
+session_id: (oACYX0d8qtLPAZ6Mtx0sgBY3AtGw)
+user_id: (1)
+expired_time: (2019-10-14 17:30:12)
+ >
+
+11:51:09 是否进入登录判断
+11:51:09 真正的sesson <SecureCookieSession {'_permanent': True, 'user_id': 'oACYX0d8qtLPAZ6Mtx0sgBY3AtGw'}>
+11:51:09 sessionid oACYX0d8qtLPAZ6Mtx0sgBY3AtGw
+11:51:09 current_user session < Session
+id: (1)
+created_time: (2019-10-14 17:30:12)
+updated_time: (2019-10-14 17:30:12)
+session_id: (oACYX0d8qtLPAZ6Mtx0sgBY3AtGw)
+user_id: (1)
+expired_time: (2019-10-14 17:30:12)
+ >
+
+11:51:09 判断当前用户 < Session
+id: (1)
+created_time: (2019-10-14 17:30:12)
+updated_time: (2019-10-14 17:30:12)
+session_id: (oACYX0d8qtLPAZ6Mtx0sgBY3AtGw)
+user_id: (1)
+expired_time: (2019-10-14 17:30:12)
+ >
+
+11:51:09 判断用户 < User
+id: (9)
+created_time: (2019-10-15 03:51:09)
+updated_time: (2019-10-15 03:51:09)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (test)
+unionid: (None)
+session_key: (None)
+identity: (1)
+ >
+
+11:51:09 游客用户
+11:52:32 生成的 session None
+11:52:34 是否进入登录判断
+11:52:34 真正的sesson <SecureCookieSession {'_permanent': True, 'user_id': 'oACYX0d8qtLPAZ6Mtx0sgBY3AtGw'}>
+11:52:34 sessionid oACYX0d8qtLPAZ6Mtx0sgBY3AtGw
+11:52:34 current_user session < Session
+id: (1)
+created_time: (2019-10-14 17:30:12)
+updated_time: (2019-10-14 17:30:12)
+session_id: (oACYX0d8qtLPAZ6Mtx0sgBY3AtGw)
+user_id: (1)
+expired_time: (2019-10-14 17:30:12)
+ >
+
+11:52:34 判断当前用户 < Session
+id: (1)
+created_time: (2019-10-14 17:30:12)
+updated_time: (2019-10-14 17:30:12)
+session_id: (oACYX0d8qtLPAZ6Mtx0sgBY3AtGw)
+user_id: (1)
+expired_time: (2019-10-14 17:30:12)
+ >
+
+11:52:34 判断用户 < User
+id: (10)
+created_time: (2019-10-15 03:52:35)
+updated_time: (2019-10-15 03:52:35)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (test)
+unionid: (None)
+session_key: (None)
+identity: (1)
+ >
+
+11:52:34 游客用户
+11:54:48 生成的 session None
+11:54:54 是否进入登录判断
+11:54:54 真正的sesson <SecureCookieSession {'_permanent': True, 'user_id': 'oACYX0d8qtLPAZ6Mtx0sgBY3AtGw'}>
+11:54:54 sessionid oACYX0d8qtLPAZ6Mtx0sgBY3AtGw
+11:54:54 current_user session < Session
+id: (1)
+created_time: (2019-10-14 17:30:12)
+updated_time: (2019-10-14 17:30:12)
+session_id: (oACYX0d8qtLPAZ6Mtx0sgBY3AtGw)
+user_id: (1)
+expired_time: (2019-10-14 17:30:12)
+ >
+
+11:54:54 判断当前用户 < Session
+id: (1)
+created_time: (2019-10-14 17:30:12)
+updated_time: (2019-10-14 17:30:12)
+session_id: (oACYX0d8qtLPAZ6Mtx0sgBY3AtGw)
+user_id: (1)
+expired_time: (2019-10-14 17:30:12)
+ >
+
+11:54:54 判断用户 < User
+id: (11)
+created_time: (2019-10-15 03:54:54)
+updated_time: (2019-10-15 03:54:54)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (test)
+unionid: (None)
+session_key: (None)
+identity: (1)
+ >
+
+11:54:54 游客用户
+11:56:27 生成的 session None
+11:56:34 是否进入登录判断
+11:56:34 真正的sesson <SecureCookieSession {'_permanent': True, 'user_id': 'oACYX0d8qtLPAZ6Mtx0sgBY3AtGw'}>
+11:56:34 sessionid oACYX0d8qtLPAZ6Mtx0sgBY3AtGw
+11:56:34 current_user session < Session
+id: (1)
+created_time: (2019-10-14 17:30:12)
+updated_time: (2019-10-14 17:30:12)
+session_id: (oACYX0d8qtLPAZ6Mtx0sgBY3AtGw)
+user_id: (1)
+expired_time: (2019-10-14 17:30:12)
+ >
+
+11:56:34 s.expired 48817
+11:56:34 判断当前用户 < Session
+id: (1)
+created_time: (2019-10-14 17:30:12)
+updated_time: (2019-10-14 17:30:12)
+session_id: (oACYX0d8qtLPAZ6Mtx0sgBY3AtGw)
+user_id: (1)
+expired_time: (2019-10-14 17:30:12)
+ >
+
+11:56:34 判断用户 < User
+id: (12)
+created_time: (2019-10-15 03:56:34)
+updated_time: (2019-10-15 03:56:34)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (test)
+unionid: (None)
+session_key: (None)
+identity: (1)
+ >
+
+11:56:34 游客用户
+13:57:28 生成的 session None
+13:57:30 是否进入登录判断
+13:57:30 真正的sesson <SecureCookieSession {'_permanent': True, 'user_id': 'oACYX0d8qtLPAZ6Mtx0sgBY3AtGw'}>
+13:57:30 sessionid oACYX0d8qtLPAZ6Mtx0sgBY3AtGw
+13:57:30 current_user session < Session
+id: (1)
+created_time: (2019-10-14 17:30:12)
+updated_time: (2019-10-14 17:30:12)
+session_id: (oACYX0d8qtLPAZ6Mtx0sgBY3AtGw)
+user_id: (1)
+expired_time: (2019-10-14 17:30:12)
+ >
+
+13:57:30 s.expired True
+13:57:30 判断当前用户 < Session
+id: (1)
+created_time: (2019-10-14 17:30:12)
+updated_time: (2019-10-14 17:30:12)
+session_id: (oACYX0d8qtLPAZ6Mtx0sgBY3AtGw)
+user_id: (1)
+expired_time: (2019-10-14 17:30:12)
+ >
+
+13:57:30 判断用户 < User
+id: (13)
+created_time: (2019-10-15 05:57:30)
+updated_time: (2019-10-15 05:57:30)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (test)
+unionid: (None)
+session_key: (None)
+identity: (1)
+ >
+
+13:57:30 游客用户
+14:13:23 是否进入登录判断
+14:13:23 真正的sesson <SecureCookieSession {'_permanent': True, 'user_id': 'oACYX0d8qtLPAZ6Mtx0sgBY3AtGw'}>
+14:13:23 sessionid oACYX0d8qtLPAZ6Mtx0sgBY3AtGw
+14:13:23 current_user session < Session
+id: (1)
+created_time: (2019-10-14 17:30:12)
+updated_time: (2019-10-14 17:30:12)
+session_id: (oACYX0d8qtLPAZ6Mtx0sgBY3AtGw)
+user_id: (1)
+expired_time: (2019-10-14 17:30:12)
+ >
+
+14:13:23 s.expired True
+14:13:23 判断当前用户 < Session
+id: (1)
+created_time: (2019-10-14 17:30:12)
+updated_time: (2019-10-14 17:30:12)
+session_id: (oACYX0d8qtLPAZ6Mtx0sgBY3AtGw)
+user_id: (1)
+expired_time: (2019-10-14 17:30:12)
+ >
+
+14:13:23 判断用户 < User
+id: (14)
+created_time: (2019-10-15 06:13:23)
+updated_time: (2019-10-15 06:13:23)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (test)
+unionid: (None)
+session_key: (None)
+identity: (1)
+ >
+
+14:13:23 游客用户
+14:13:23 生成的 session None
+14:14:32 生成的 session None
+14:20:50 生成的 session < Session
+id: (1)
+created_time: (2019-10-15 06:20:50)
+updated_time: (2019-10-15 06:20:50)
+session_id: (None)
+user_id: (None)
+expired_time: (2019-10-15 06:20:50)
+ >
+
+14:21:00 是否进入登录判断
+14:21:00 真正的sesson <SecureCookieSession {'_permanent': True, 'user_id': 'oACYX0d8qtLPAZ6Mtx0sgBY3AtGw'}>
+14:21:00 sessionid oACYX0d8qtLPAZ6Mtx0sgBY3AtGw
+14:21:00 current_user session None

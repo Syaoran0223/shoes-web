@@ -56,6 +56,7 @@ def current_user():
         log('sessionid', session_id)
         s = Session.one(session_id=session_id)
         log('current_user session', s)
+        log('s.expired', s.expired())
         if s is None or s.expired():
             log('判断当前用户', s)
             return User.guest()
