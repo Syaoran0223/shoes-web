@@ -13,7 +13,7 @@ from models.product_attr import ProductAttr
 from models.user import User
 from models.batch import Batch
 from models.dictMap import DictMap
-
+from models.session import Session
 print('数据类型', secret.db_port)
 
 

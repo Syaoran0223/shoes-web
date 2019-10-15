@@ -1,7 +1,10 @@
 import os
 import time
 import uuid
-
+from routes import (
+    current_user,
+    login_required,
+)
 from models.batch import Batch
 from utils import log
 from flask import (
@@ -37,6 +40,7 @@ def index():
 
 
 @main.route('/queryByBatch', methods=['POST'])
+@login_required
 def queryByBatch():
     # 查询商品大类
     form = request.form.to_dict()
@@ -45,7 +49,6 @@ def queryByBatch():
     r = Res.success(r)
     print('查询所有商品', r)
     return make_response(jsonify(r))
-
 
 @main.route('/queryByCondition', methods=['POST'])
 def queryByCondition():

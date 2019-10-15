@@ -15,6 +15,8 @@ from flask import (
     send_from_directory
 )
 
+from models.user_role import UserRole
+
 
 class User(SQLMixin, db.Model):
     __tablename__ = 'User'
@@ -36,6 +38,7 @@ class User(SQLMixin, db.Model):
     def login(cls, form):
         # openid =
         print('form', form.get('openid'))
+        print('form in models.user', form)
         r = cls.one(openid=form.get('openid'))
         if r is None:
             r = cls.new(form)
@@ -47,10 +50,18 @@ class User(SQLMixin, db.Model):
         return r
 
     @staticmethod
-    def validateSQL():
-        sql = "select * from user"
-        r = db.session.execute(str)
-        return
+    def guest():
+        form = dict(
+            role=UserRole.guest,
+            # username='guest',
+            # password='guest',
+            openid='test'
+        )
+        u = User.new(form)
+        return u
+
+    def is_guest(self):
+        return self.role == UserRole.guest
 
     def add_default_value(self):
         super().add_default_value()
