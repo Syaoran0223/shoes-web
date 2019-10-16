@@ -19,7 +19,7 @@ class Res(object):
     @classmethod
     def fail(cls, form={}, msg='fail'):
         r = cls(form)
-        r.code = 1
+        r.code = form.get('code') or 1
         r.msg = msg
 
         return r.__dict__

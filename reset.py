@@ -13,7 +13,7 @@ from models.product_attr import ProductAttr
 from models.user import User
 from models.batch import Batch
 from models.dictMap import DictMap
-from models.session import Session
+
 print('数据类型', secret.db_port)
 
 
@@ -142,10 +142,9 @@ def generate_fake_date():
             'type': 'BATCH_UPLOAD',
             'note': '批次表格导入状态',
         },
-
     ]
     DictMap.new_by_list_dict(d1)
-    # 新增批次
+    # # 新增批次
     b1 = dict(
         purchase_time='2019-8-26',
         name='测试',
@@ -158,25 +157,8 @@ def generate_fake_date():
     )
     Batch.new(b1)
     Batch.new(b2)
-
-    # # 增加商品
-    # s1 = dict(
-    #     status=0,
-    #     cost=100,
-    #     price=1200,
-    #     batch='新增的鞋子 2019-9-1',
-    #     # express_price=24,
-    #     # order_id=1
-    #     count=5,
-    #     product_id=1
-    # )
-    # s = Stock.add_by_count(s1)
-    # print('s', s)
-    # ss = Stock.queryAll()
-    # print('查询鞋子结果', ss)
-    # p2 = ProductAttr.queryAll()
-    # print('p2', p2)
-    # product1_attr1()
+    #
+    #
 
 
 if __name__ == '__main__':

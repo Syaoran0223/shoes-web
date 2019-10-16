@@ -3,7 +3,7 @@ import uuid
 from config import base
 import requests
 
-from models.session import Session
+# from models.session import Session
 from models.user_role import UserRole
 
 from utils import log
@@ -36,61 +36,49 @@ def register():
 
 @main.route("/login", methods=['POST'])
 def login():
+    print('login before session', session)
     form = request.form.to_dict()
-    wxloginUrl = """https://api.weixin.qq.com/sns/jscode2session?appid={appid}&secret={appSecret}&js_code={code}&grant_type=authorization_code""".format(appid=base.appid, appSecret=base.appSecret, code=form.get('code'))
-    res = requests.post(wxloginUrl).json()
+    wx_login_url = """https://api.weixin.qq.com/sns/jscode2session?appid={appid}&secret={appSecret}&js_code={code}&grant_type=authorization_code""".format(appid=base.appid, appSecret=base.appSecret, code=form.get('code'))
+    res = requests.post(wx_login_url).json()
     u = User.login(res)
     print('u', u)
-    filterMap = ['openid', 'id','updated_time']
-    if u is not None:
-        token = u.get('token')
-        print('token', token)
-        sform = dict(
-            session_id=u.get('openid'),
-            user_id= u.get('id')
-        )
-        print('ssssform', sform)
-        s = Session.add(sform)
-        log('生成的 session', s)
-        session['user_id'] = u.get('openid')
-        print('session', session)
-        print('login session', session.get('user_id'))
+    session['id'] = u.get('id')
+    # session[u.get('openid')] = u.get('id')
+    print('session in login', session)
+    filter_map = ['openid', 'id', 'updated_time']
         # 设置 cookie 有效期为 永久
-        session.permanent = True
-        token = dict(
-            token=token
-        )
+        # session.permanent = True
     result = dict()
     for k in u.keys():
-        if  k in filterMap:
+        if k in filter_map:
             result[k] = u[k]
     resp = make_response(jsonify(result))
-    resp.headers["X-Token"] = [token.get('token')]
-    print('resp in login', resp.headers)
+    # resp.headers["X-Token"] = [token.get('token')]
+    # print('resp in login', resp.headers)
     return resp
 
 
-    u = User.validate_login(form)
-    print('login, u', u)
-    if u is not None:
-        token = u.json().get('token')
-        print('token', token)
-        session['user_id'] = u.id
-        print('session', session)
-        print('login session', session.get('user_id'))
-        # 设置 cookie 有效期为 永久
-        session.permanent = True
-        token = dict(
-            token=token
-        )
-        r = Res.success(token, msg='登录成功')
-    else:
-        r = Res.fail({}, '登录失败')
-    print('r',jsonify(r))
-    resp = make_response(jsonify(r))
-
-    resp.headers["X-Token"] = [token.get('token')]
-    return resp
+    # u = User.validate_login(form)
+    # print('login, u', u)
+    # if u is not None:
+    #     token = u.json().get('token')
+    #     print('token', token)
+    #     session['user_id'] = u.id
+    #     print('session', session)
+    #     print('login session', session.get('user_id'))
+    #     # 设置 cookie 有效期为 永久
+    #     session.permanent = True
+    #     token = dict(
+    #         token=token
+    #     )
+    #     r = Res.success(token, msg='登录成功')
+    # else:
+    #     r = Res.fail({}, '登录失败')
+    # print('r',jsonify(r))
+    # resp = make_response(jsonify(r))
+    #
+    # resp.headers["X-Token"] = [token.get('token')]
+    # return resp
 
 
 @main.route('/info', methods=['GET'])

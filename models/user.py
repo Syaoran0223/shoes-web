@@ -1,6 +1,6 @@
 import hashlib
 from models.user_role import UserRole, GuaEncoder
-from sqlalchemy import Column, String, Text, Integer
+from sqlalchemy import Column, String, Text, Integer, Enum
 from config.secret import secret_key
 from models.base_model import SQLMixin, db
 from flask import (
@@ -15,8 +15,13 @@ from flask import (
     send_from_directory
 )
 
-from models.user_role import UserRole
+identity_map = dict(
+    admin=0,
+    normal=1,
+    guest=2,
+    test=3, # 小程序测试人员使用
 
+)
 
 class User(SQLMixin, db.Model):
     __tablename__ = 'User'
@@ -32,13 +37,11 @@ class User(SQLMixin, db.Model):
     openid = Column(String(100), nullable=False)
     unionid = Column(String(100))
     session_key = Column(String(100))
-    identity = Column(Integer, default=1)
+    identity = Column(Integer, default=identity_map.get('normal'))
 
     @classmethod
     def login(cls, form):
-        # openid =
-        print('form', form.get('openid'))
-        print('form in models.user', form)
+
         r = cls.one(openid=form.get('openid'))
         if r is None:
             r = cls.new(form)
@@ -56,7 +59,7 @@ class User(SQLMixin, db.Model):
             role=UserRole.guest,
             # username='guest',
             # password='guest',
-            openid='test'
+            # openid='test'
         )
         u = User.new(form)
         return u

@@ -182,32 +182,6 @@ class SQLMixin(object):
             page_size = int(kwargs['page_size'])
             page_index = int(kwargs['page_index'])
             print('有页码')
-            ms = cls.query.filter(cls.file_name.like('%{}%'.format(title))).limit(page_size).offset(
-                (page_index - 1) * page_size).all()
-        else:
-            print('有标题', title)
-            ms = cls.query.filter(
-                cls.file_name.like('%{}%'.format(title))).all()
-        # 总数量
-        count = db.session.query(func.count(cls.id)).scalar()
-        ms = [m.json() for m in ms]
-        print('搜索结果', ms)
-        return ms, count
-
-    @classmethod
-    def queryByCondition(cls, **kwargs):
-        print('base_model all kwargs', kwargs)
-        # page_size = int(kwargs['page_size']) or None
-        page_size = hasattr(kwargs, 'page_size')
-        # print('base_modal queryByCondition page_size', page_size)
-        # page_index = int(kwargs['page_index'])
-        page_index = hasattr(kwargs, 'page_index')
-        title = kwargs['title']
-        print(page_size, page_index, title)
-        if page_size and page_index:
-            page_size = int(kwargs['page_size'])
-            page_index = int(kwargs['page_index'])
-            print('有页码')
             ms = cls.query.filter(cls.name.like('%{}%'.format(title))).limit(page_size).offset(
                 (page_index - 1) * page_size).all()
         else:

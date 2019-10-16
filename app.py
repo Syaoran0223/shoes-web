@@ -45,7 +45,7 @@ def configured_app():
     db.init_app(app)
     register_routes(app)
     # 设置session过期时间
-    app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=7)
+    app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=3)
 
     # flask admin
     admin = Admin(app, name='shoes', template_mode='bootstrap3')

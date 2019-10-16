@@ -1,5 +1,5 @@
-host = '192.168.0.109'
-# host = '192.168.1.126'
+# host = '192.168.0.109'
+host = '192.168.1.126'
 port = '3333'
 base_url = 'http://{}:{}'.format(host, port)
 appid = 'wx4dea673b058fd1a8'

@@ -3,9 +3,9 @@ from functools import wraps
 from flask import session, request, abort, make_response, jsonify
 
 from models.res import Res
-from models.user import User
+from models.user import User, identity_map
 from utils import log
-from models.session import Session
+# from models.session import Session
 
 def cors(func):
     @wraps(func)
@@ -51,25 +51,15 @@ def formatParams(func):
 
 def current_user():
     log('真正的sesson', session)
-    if 'user_id' in session:
-        session_id = session.get('user_id')
-        print('这里的 session', session_id)
-        # s = User.one(openid=session_id)
-        # log('session找的用户', s)
-        # log('sessionid', session_id)
-        s = Session.one(session_id=session_id)
-        # log('current_user session', s)
-        # log('s.expired', s.expired())
-        if s is None or s.expired():
-            log('判断当前用户', s)
-            return User.guest()
-        else:
-            user_id = s.user_id
-            u = User.find_by(id=user_id)
-            return u
+    user_id = session.get('id')
+    log('current session获取的id', user_id)
+    if user_id is not None:
+        u = User.one(id=user_id)
+        log('查询结果', u)
+        return u.json()
     else:
         log('没进去')
-        return User.guest()
+        return make_response(jsonify(Res.fail('没有权限')))
 
 def login_required(route_function):
     """
@@ -81,9 +71,10 @@ def login_required(route_function):
         log('是否进入登录判断')
         u = current_user()
         log('判断用户', u)
-        if u.is_guest():
+        log('用户权限', u.get('identity'), '管理员权限', identity_map.get('admin'))
+        if u.get('identity') != identity_map.get('admin'):
             log('游客用户')
-            r = Res.fail(u.json())
+            r = Res.fail(u, msg='不是管理员用户')
             return make_response(jsonify(r))
         else:
             log('登录用户', route_function)
