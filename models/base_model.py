@@ -21,8 +21,8 @@ class SQLMixin(object):
     def sql_to_list(cls, proxy):
         list = []
         for row in proxy:
-            print('row.keys', row.keys())
-            print('row values', row.values())
+            # print('row.keys', row.keys())
+            # print('row values', row.values())
             list.append(dict(zip(row.keys(), row.values())))
         return list
 

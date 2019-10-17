@@ -18,6 +18,7 @@ class Stock(SQLMixin, db.Model):
     express_price = Column(Float,comment='运费')
     profit = Column(Float,comment='利润')
     express_number = Column(String(50), comment='订单号')
+    editor = Column(String(100), comment='最后修改人')
 
     @classmethod
     def add_by_list(cls,form):

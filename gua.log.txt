@@ -1545,3 +1545,225 @@ identity: (1)
 17:28:49 判断用户 {'id': 2, 'created_time': datetime.datetime(2019, 10, 16, 9, 28, 31), 'updated_time': datetime.datetime(2019, 10, 16, 9, 28, 31), 'username': None, 'password': None, 'avatar': None, 'token': None, 'openid': 'oACYX0QEcjcDq05sBNqWQuQrd8nQ', 'unionid': None, 'session_key': 'qfdAdoEj/0dyQvDThmuSEw==', 'identity': 1}
 17:28:49 用户权限 1 管理员权限 0
 17:28:49 游客用户
+09:43:40 是否进入登录判断
+09:43:40 真正的sesson <SecureCookieSession {'id': 1, 'oACYX0d8qtLPAZ6Mtx0sgBY3AtGw': 1}>
+09:43:40 current session获取的id 1
+09:43:40 查询结果 < User
+id: (1)
+created_time: (2019-10-17 01:16:57)
+updated_time: (2019-10-17 01:16:57)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (oACYX0d8qtLPAZ6Mtx0sgBY3AtGw)
+unionid: (None)
+session_key: (None)
+identity: (0)
+ >
+
+09:43:40 判断用户 {'id': 1, 'created_time': datetime.datetime(2019, 10, 17, 1, 16, 57), 'updated_time': datetime.datetime(2019, 10, 17, 1, 16, 57), 'username': None, 'password': None, 'avatar': None, 'token': None, 'openid': 'oACYX0d8qtLPAZ6Mtx0sgBY3AtGw', 'unionid': None, 'session_key': None, 'identity': 0}
+09:43:40 用户权限 0 管理员权限 0
+09:43:40 登录用户 <function queryByBatch at 0x000001EB4B274400>
+09:47:39 是否进入登录判断
+09:47:39 真正的sesson <SecureCookieSession {'id': 1, 'oACYX0d8qtLPAZ6Mtx0sgBY3AtGw': 1}>
+09:47:39 current session获取的id 1
+09:47:39 查询结果 < User
+id: (1)
+created_time: (2019-10-17 01:16:57)
+updated_time: (2019-10-17 01:16:57)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (oACYX0d8qtLPAZ6Mtx0sgBY3AtGw)
+unionid: (None)
+session_key: (None)
+identity: (0)
+ >
+
+09:47:39 判断用户 {'id': 1, 'created_time': datetime.datetime(2019, 10, 17, 1, 16, 57), 'updated_time': datetime.datetime(2019, 10, 17, 1, 16, 57), 'username': None, 'password': None, 'avatar': None, 'token': None, 'openid': 'oACYX0d8qtLPAZ6Mtx0sgBY3AtGw', 'unionid': None, 'session_key': None, 'identity': 0}
+09:47:39 用户权限 0 管理员权限 0
+09:47:39 登录用户 <function queryByBatch at 0x000001EB4B274400>
+09:50:56 是否进入登录判断
+09:50:56 真正的sesson <SecureCookieSession {'id': 3}>
+09:50:56 current session获取的id 3
+09:50:56 查询结果 < User
+id: (3)
+created_time: (2019-10-17 01:50:33)
+updated_time: (2019-10-17 01:50:33)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (oACYX0QEcjcDq05sBNqWQuQrd8nQ)
+unionid: (None)
+session_key: (n4oVJCeqG1sKJFMs/rDLcA==)
+identity: (1)
+ >
+
+09:50:56 判断用户 {'id': 3, 'created_time': datetime.datetime(2019, 10, 17, 1, 50, 33), 'updated_time': datetime.datetime(2019, 10, 17, 1, 50, 33), 'username': None, 'password': None, 'avatar': None, 'token': None, 'openid': 'oACYX0QEcjcDq05sBNqWQuQrd8nQ', 'unionid': None, 'session_key': 'n4oVJCeqG1sKJFMs/rDLcA==', 'identity': 1}
+09:50:56 用户权限 1 管理员权限 0
+09:50:56 游客用户
+09:57:55 测试admin "User".identity = :identity_1
+09:58:33 测试admin False
+10:01:33 是否进入登录判断
+10:01:33 真正的sesson <SecureCookieSession {'id': 3}>
+10:01:33 current session获取的id 3
+10:01:33 查询结果 < User
+id: (3)
+created_time: (2019-10-17 01:50:33)
+updated_time: (2019-10-17 01:50:33)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (oACYX0QEcjcDq05sBNqWQuQrd8nQ)
+unionid: (None)
+session_key: (n4oVJCeqG1sKJFMs/rDLcA==)
+identity: (1)
+ >
+
+10:01:33 判断用户 {'id': 3, 'created_time': datetime.datetime(2019, 10, 17, 1, 50, 33), 'updated_time': datetime.datetime(2019, 10, 17, 1, 50, 33), 'username': None, 'password': None, 'avatar': None, 'token': None, 'openid': 'oACYX0QEcjcDq05sBNqWQuQrd8nQ', 'unionid': None, 'session_key': 'n4oVJCeqG1sKJFMs/rDLcA==', 'identity': 1}
+10:01:33 用户权限 1 管理员权限 0
+10:01:33 游客用户
+10:17:03 是否进入登录判断
+10:17:03 真正的sesson <SecureCookieSession {'id': 3}>
+10:17:03 current session获取的id 3
+10:17:03 查询结果 < User
+id: (3)
+created_time: (2019-10-17 01:50:33)
+updated_time: (2019-10-17 01:50:33)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (oACYX0QEcjcDq05sBNqWQuQrd8nQ)
+unionid: (None)
+session_key: (n4oVJCeqG1sKJFMs/rDLcA==)
+identity: (1)
+ >
+
+10:17:03 判断用户 {'id': 3, 'created_time': datetime.datetime(2019, 10, 17, 1, 50, 33), 'updated_time': datetime.datetime(2019, 10, 17, 1, 50, 33), 'username': None, 'password': None, 'avatar': None, 'token': None, 'openid': 'oACYX0QEcjcDq05sBNqWQuQrd8nQ', 'unionid': None, 'session_key': 'n4oVJCeqG1sKJFMs/rDLcA==', 'identity': 1}
+10:17:03 用户权限 1 管理员权限 0
+10:17:03 游客用户
+10:22:32 是否进入登录判断
+10:22:32 真正的sesson <SecureCookieSession {'id': 1}>
+10:22:32 current session获取的id 1
+10:22:32 查询结果 < User
+id: (1)
+created_time: (2019-10-17 01:16:57)
+updated_time: (2019-10-17 01:16:57)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (oACYX0d8qtLPAZ6Mtx0sgBY3AtGw)
+unionid: (None)
+session_key: (None)
+identity: (0)
+ >
+
+10:22:32 判断用户 {'id': 1, 'created_time': datetime.datetime(2019, 10, 17, 1, 16, 57), 'updated_time': datetime.datetime(2019, 10, 17, 1, 16, 57), 'username': None, 'password': None, 'avatar': None, 'token': None, 'openid': 'oACYX0d8qtLPAZ6Mtx0sgBY3AtGw', 'unionid': None, 'session_key': None, 'identity': 0}
+10:22:32 用户权限 0 管理员权限 0
+10:22:32 登录用户 <function queryByBatch at 0x000001AF69715488>
+10:49:44 是否进入登录判断
+10:49:44 真正的sesson <SecureCookieSession {'id': 1}>
+10:49:44 current session获取的id 1
+10:49:44 查询结果 < User
+id: (1)
+created_time: (2019-10-17 01:16:57)
+updated_time: (2019-10-17 01:16:57)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (oACYX0d8qtLPAZ6Mtx0sgBY3AtGw)
+unionid: (None)
+session_key: (None)
+identity: (0)
+ >
+
+10:49:44 判断用户 {'id': 1, 'created_time': datetime.datetime(2019, 10, 17, 1, 16, 57), 'updated_time': datetime.datetime(2019, 10, 17, 1, 16, 57), 'username': None, 'password': None, 'avatar': None, 'token': None, 'openid': 'oACYX0d8qtLPAZ6Mtx0sgBY3AtGw', 'unionid': None, 'session_key': None, 'identity': 0}
+10:49:44 用户权限 0 管理员权限 0
+10:49:44 登录用户 <function queryByBatch at 0x000001AF69715488>
+16:36:31 是否进入登录判断
+16:36:31 真正的sesson <SecureCookieSession {'_permanent': True, 'id': 2}>
+16:36:31 current session获取的id 2
+16:36:31 查询结果 < User
+id: (2)
+created_time: (2019-10-17 07:31:08)
+updated_time: (2019-10-17 07:31:08)
+username: (tester)
+password: (tester)
+avatar: (None)
+token: (None)
+openid: (oACYX0QEcjcDq05sBNqWQuQrd8nQ)
+unionid: (None)
+session_key: (None)
+identity: (2)
+ >
+
+16:36:31 判断用户 {'id': 2, 'created_time': datetime.datetime(2019, 10, 17, 7, 31, 8), 'updated_time': datetime.datetime(2019, 10, 17, 7, 31, 8), 'username': 'tester', 'password': 'tester', 'avatar': None, 'token': None, 'openid': 'oACYX0QEcjcDq05sBNqWQuQrd8nQ', 'unionid': None, 'session_key': None, 'identity': 2}
+16:36:31 用户权限 2 管理员权限 0
+16:36:31 游客用户
+16:42:14 是否进入登录判断
+16:42:14 真正的sesson <SecureCookieSession {'_permanent': True, 'id': 2}>
+16:42:14 current session获取的id 2
+16:42:14 查询结果 < User
+id: (2)
+created_time: (2019-10-17 08:41:37)
+updated_time: (2019-10-17 08:41:37)
+username: (tester)
+password: (tester)
+avatar: (None)
+token: (None)
+openid: (oACYX0QEcjcDq05sBNqWQuQrd8nQ)
+unionid: (None)
+session_key: (None)
+identity: (2)
+ >
+
+16:42:14 判断用户 {'id': 2, 'created_time': datetime.datetime(2019, 10, 17, 8, 41, 37), 'updated_time': datetime.datetime(2019, 10, 17, 8, 41, 37), 'username': 'tester', 'password': 'tester', 'avatar': None, 'token': None, 'openid': 'oACYX0QEcjcDq05sBNqWQuQrd8nQ', 'unionid': None, 'session_key': None, 'identity': 2}
+16:42:14 用户权限 2 管理员权限 0
+16:42:14 游客用户
+16:43:16 是否进入登录判断
+16:43:16 真正的sesson <SecureCookieSession {'_permanent': True, 'id': 2}>
+16:43:16 current session获取的id 2
+16:43:16 查询结果 < User
+id: (2)
+created_time: (2019-10-17 08:41:37)
+updated_time: (2019-10-17 08:41:37)
+username: (tester)
+password: (tester)
+avatar: (None)
+token: (None)
+openid: (oACYX0QEcjcDq05sBNqWQuQrd8nQ)
+unionid: (None)
+session_key: (None)
+identity: (2)
+ >
+
+16:43:16 判断用户 {'id': 2, 'created_time': datetime.datetime(2019, 10, 17, 8, 41, 37), 'updated_time': datetime.datetime(2019, 10, 17, 8, 41, 37), 'username': 'tester', 'password': 'tester', 'avatar': None, 'token': None, 'openid': 'oACYX0QEcjcDq05sBNqWQuQrd8nQ', 'unionid': None, 'session_key': None, 'identity': 2}
+16:43:16 用户权限 2 管理员权限 0
+16:43:16 游客用户
+16:45:46 是否进入登录判断
+16:45:46 真正的sesson <SecureCookieSession {'_permanent': True, 'id': 1}>
+16:45:46 current session获取的id 1
+16:45:46 查询结果 < User
+id: (1)
+created_time: (2019-10-17 08:41:37)
+updated_time: (2019-10-17 08:41:37)
+username: (None)
+password: (None)
+avatar: (None)
+token: (None)
+openid: (oACYX0d8qtLPAZ6Mtx0sgBY3AtGw)
+unionid: (None)
+session_key: (None)
+identity: (0)
+ >
+
+16:45:46 判断用户 {'id': 1, 'created_time': datetime.datetime(2019, 10, 17, 8, 41, 37), 'updated_time': datetime.datetime(2019, 10, 17, 8, 41, 37), 'username': None, 'password': None, 'avatar': None, 'token': None, 'openid': 'oACYX0d8qtLPAZ6Mtx0sgBY3AtGw', 'unionid': None, 'session_key': None, 'identity': 0}
+16:45:46 用户权限 0 管理员权限 0
+16:45:46 登录用户 <function queryByBatch at 0x000001C8C5D117B8>

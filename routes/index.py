@@ -10,8 +10,11 @@ from flask import (
     Blueprint,
     make_response,
     abort,
-    send_from_directory
-)
+    send_from_directory,
+    jsonify)
+from models.dictMap import  DictMap
+from models.res import Res
+
 main = Blueprint('index', __name__)
 
 @main.route("/", methods=['GET'])
@@ -23,6 +26,11 @@ def index():
 @main.route('/static/images/<filename>', methods=['GET'])
 def image(filename):
     return send_from_directory('static/images/', filename)
+
+@main.route('/queryConfig', methods=["POST"])
+def query_config():
+    r = DictMap.query_config()
+    return make_response(jsonify(Res.success(r)))
 
 # @main.route('/static/teacher/<filename>', methods=['GET'])
 # def image(filename):

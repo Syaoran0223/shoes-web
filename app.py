@@ -22,7 +22,7 @@ from models.product import Product
 
 
 def register_routes(app):
-    app.register_blueprint(index_routes)
+    app.register_blueprint(index_routes,url_prefix='/api/index')
     app.register_blueprint(user_routes, url_prefix='/api/user')
     app.register_blueprint(image, url_prefix='/api/image')
     app.register_blueprint(product_routes, url_prefix='/api/product')

@@ -72,11 +72,12 @@ def login_required(route_function):
         u = current_user()
         log('判断用户', u)
         log('用户权限', u.get('identity'), '管理员权限', identity_map.get('admin'))
-        if u.get('identity') != identity_map.get('admin'):
+        if u.get('identity') == identity_map.get('admin') or u.get('identity') == identity_map.get('tester'):
+            log('登录用户', route_function)
+            return route_function()
+
+        else:
             log('游客用户')
             r = Res.fail(u, msg='不是管理员用户')
             return make_response(jsonify(r))
-        else:
-            log('登录用户', route_function)
-            return route_function()
     return f

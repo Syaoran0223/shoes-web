@@ -83,12 +83,23 @@ def generate_fake_date():
         identity=0,
     )
     User.login(u)
+    tester = dict(
+        username='tester',
+        password='tester',
+        openid='tester',
+        identity=2,
+    )
+    User.new(tester)
+
+
+
     # 增加字典表
    
     d1 = [
         {
             'key': 0,
             'value': '管理员',
+            'alias': 'admin',
             'status': 0,
             'type': 'USER_TYPE',
             'note': '用户权限',
@@ -96,6 +107,15 @@ def generate_fake_date():
         {
             'key': 1,
             'value': '普通用户',
+            'alias': 'normal',
+            'status': 0,
+            'type': 'USER_TYPE',
+            'note': '用户权限',
+        },
+        {
+            'key': 2,
+            'value': '微信测试账号',
+            'alias': 'tester',
             'status': 0,
             'type': 'USER_TYPE',
             'note': '用户权限',
@@ -103,6 +123,7 @@ def generate_fake_date():
         {
             'key': 0,
             'value': '出售中',
+            'alias': 'sale',
             'status': 0,
             'type': 'STOCK_STATUS',
             'note': '出售状态',
@@ -110,6 +131,7 @@ def generate_fake_date():
         {
             'key': 1,
             'value': '已出售',
+            'alias': 'sell',
             'status': 0,
             'type': 'STOCK_STATUS',
             'note': '出售状态',
@@ -117,6 +139,7 @@ def generate_fake_date():
         {
             'key': 2,
             'value': '寄售',
+            'alias': 'consignment',
             'status': 0,
             'type': 'STOCK_STATUS',
             'note': '出售状态',
@@ -124,6 +147,7 @@ def generate_fake_date():
         {
             'key': 3,
             'value': '退回中',
+            'alias': 'return',
             'status': 0,
             'type': 'STOCK_STATUS',
             'note': '出售状态',
@@ -131,6 +155,7 @@ def generate_fake_date():
         {
             'key': 0,
             'value': '未上传',
+            'alias': 'unupload',
             'status': 0,
             'type': 'BATCH_UPLOAD',
             'note': '批次表格导入状态',
@@ -138,6 +163,7 @@ def generate_fake_date():
         {
             'key': 1,
             'value': '已上传',
+            'alias': 'uploaded',
             'status': 0,
             'type': 'BATCH_UPLOAD',
             'note': '批次表格导入状态',

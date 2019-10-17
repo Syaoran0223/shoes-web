@@ -17,6 +17,7 @@ class Batch(SQLMixin, db.Model):
     upload = Column(Integer, default=0, comment='上传状态')
     note = Column(String(100), default="", comment="备注")
     excel_name = Column(String(100), comment="excel文件名")
+    editor = Column(String(100), comment='最后修改人')
     
 
     @classmethod

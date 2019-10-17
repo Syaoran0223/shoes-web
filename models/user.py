@@ -1,5 +1,5 @@
 import hashlib
-from models.user_role import UserRole, GuaEncoder
+
 from sqlalchemy import Column, String, Text, Integer, Enum
 from config.secret import secret_key
 from models.base_model import SQLMixin, db
@@ -18,8 +18,7 @@ from flask import (
 identity_map = dict(
     admin=0,
     normal=1,
-    guest=2,
-    test=3, # 小程序测试人员使用
+    tester=2,# 小程序测试人员使用
 
 )
 
@@ -41,7 +40,6 @@ class User(SQLMixin, db.Model):
 
     @classmethod
     def login(cls, form):
-
         r = cls.one(openid=form.get('openid'))
         if r is None:
             r = cls.new(form)
@@ -49,23 +47,11 @@ class User(SQLMixin, db.Model):
         else:
             print('查询到用户', r)
         # 返回部分字段
-        r = r.json()
 
         return r
 
-    @staticmethod
-    def guest():
-        form = dict(
-            role=UserRole.guest,
-            # username='guest',
-            # password='guest',
-            # openid='test'
-        )
-        u = User.new(form)
-        return u
-
-    def is_guest(self):
-        return self.role == UserRole.guest
+    def is_admin(self):
+        return bool(self.identity == identity_map.get('admin')) or bool(self.id == identity_map.get('tester'))
 
     def add_default_value(self):
         super().add_default_value()

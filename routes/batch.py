@@ -77,6 +77,7 @@ def delete_more():
 @main.route('/updateBatch', methods=['post'])
 def update():
     form = request.form.to_dict()
+    form['editor'] = session.get('id')
     print('form', form)
     data = Batch.update(**form)
     print('data', data)

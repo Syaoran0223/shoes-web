@@ -1,6 +1,8 @@
 import os
 import time
 import uuid
+
+from models.user import User
 from routes import (
     current_user,
     login_required,
@@ -85,7 +87,7 @@ def delete_one():
 @main.route('/updateStock', methods=['post'])
 def update():
     form = request.form.to_dict()
-    id = form.get('id')    
+    form['editor'] = session.get('id')
     data = Stock.update(**form)
     print('data', data)
     r = Res.success(data)
